@@ -70,8 +70,8 @@ def update(request, event_id):
 @api_view(['DELETE'])
 def delete(request, employee_id):
     try:
-        event = Employee.objects.get(id=employee_id)
-    except Employee.DoesNotExist:
+        event = Event.objects.get(id=employee_id)
+    except Event.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
     if request.method == 'DELETE':
         event.delete()
