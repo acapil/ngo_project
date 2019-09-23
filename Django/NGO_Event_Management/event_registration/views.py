@@ -1,37 +1,37 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User, Group
-from .models import Employee
+from .models import EventRegistration
 from rest_framework import viewsets
-from employee.serializers import EmployeeSerializer
+from event_registration.serializers import EventRegistrationSerializer
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
 
 # Create your views here.
 
-class EmployeeViewSet(viewsets.ModelViewSet):
-    queryset = Employee.objects.all()
-    serializer_class = EmployeeSerializer
+# class EmployeeViewSet(viewsets.ModelViewSet):
+#     queryset = Event.objects.all()
+#     serializer_class = EventSerializer
 
 
 @api_view(['GET'])
-def get_employees(request):
+def get_event_registrations(request):
     if request.method == 'GET':
-        employee = Employee.objects.all()
-        serializer = EmployeeSerializer(employee, many=True)
+        event = EventRegistration.objects.all()
+        serializer = EventRegistrationSerializer(event, many=True)
         return Response(serializer.data)
     else:
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET'])
-def get_employee(request, employee_id):
+def get_event_registration(request, event_registration_id):
     try:
-        employee = Employee.objects.get(id=employee_id)
-    except Employee.DoesNotExist:
+        event_registration = EventRegistration.objects.get(id=event_registration_id)
+    except EventRegistration.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
     if request.method == 'GET':
-        serializer = EmployeeSerializer(employee)
+        serializer = EventRegistrationSerializer(event_registration)
         return Response(serializer.data)
     else:
         return Response(status=status.HTTP_400_BAD_REQUEST)
@@ -40,7 +40,7 @@ def get_employee(request, employee_id):
 @api_view(['POST'])
 def insert(request):
     if request.method == 'POST':
-        serializer = EmployeeSerializer(data=request.data)
+        serializer = EventRegistrationSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -51,13 +51,13 @@ def insert(request):
 
 
 @api_view(['PUT'])
-def update(request, employee_id):
+def update(request, event_registration_id):
     try:
-        employee = Employee.objects.get(id=employee_id)
-    except Employee.DoesNotExist:
+        event_registration = EventRegistration.objects.get(id=event_registration_id)
+    except EventRegistration.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
     if request.method == 'PUT':
-        serializer = EmployeeSerializer(employee, data=request.data)
+        serializer = EventRegistrationSerializer(event_registration, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -68,13 +68,13 @@ def update(request, employee_id):
 
 
 @api_view(['DELETE'])
-def delete(request, employee_id):
+def delete(request, event_registration_id):
     try:
-        employee = Employee.objects.get(id=employee_id)
-    except Employee.DoesNotExist:
+        event = EventRegistration.objects.get(id=event_registration_id)
+    except EventRegistration.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
     if request.method == 'DELETE':
-        employee.delete()
+        event.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
     else:
         return Response(status=status.HTTP_400_BAD_REQUEST)

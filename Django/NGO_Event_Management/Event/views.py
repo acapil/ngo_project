@@ -15,7 +15,7 @@ class EmployeeViewSet(viewsets.ModelViewSet):
 
 
 @api_view(['GET'])
-def get_employees(request):
+def get_events(request):
     if request.method == 'GET':
         event = Event.objects.all()
         serializer = EventSerializer(event, many=True)
@@ -25,7 +25,7 @@ def get_employees(request):
 
 
 @api_view(['GET'])
-def get_employee(request, event_id):
+def get_event(request, event_id):
     try:
         event = Event.objects.get(id=event_id)
     except Event.DoesNotExist:
@@ -68,9 +68,9 @@ def update(request, event_id):
 
 
 @api_view(['DELETE'])
-def delete(request, employee_id):
+def delete(request, event_id):
     try:
-        event = Event.objects.get(id=employee_id)
+        event = Event.objects.get(id=event_id)
     except Event.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
     if request.method == 'DELETE':

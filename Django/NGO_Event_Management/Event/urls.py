@@ -17,9 +17,9 @@ from django.conf.urls import  url
 from . import views
 
 urlpatterns = [
-    url(r'^$', views.get_employees, name='get_employee_list'),
-    url(r'^(?P<pk>[0-9]+)$', views.get_employee, name='get_employee'),
+    url(r'^$', views.get_events, name='get_event_list'),
+    url(r'^(?P<event_id>[0-9]+)$', views.get_event, name='get_event'),
     url(r'^insert/$', views.insert, name='insert'),
-    url(r'^update/(?P<employee_id>[0-9]+)$', views.update, name='update'),
-    url(r'^delete/(?P<employee_id>[0-9]+)$', views.delete, name='delete'),
+    url(r'^update/(?P<event_id>[0-9]+)$', views.update, name='update'),
+    url(r'^delete/(?P<event_id>[0-9]+)$', views.delete, name='delete'),
 ]
