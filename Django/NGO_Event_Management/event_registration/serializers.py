@@ -3,7 +3,7 @@ from rest_framework import serializers
 from .models import EventRegistration
 
 
-class EventRegistrationSerializer(serializers.HyperlinkedModelSerializer):
+class EventRegistrationSerializer(serializers.ModelSerializer):
     class Meta:
         model = EventRegistration
         fields = ['id', 'user_id', 'event_id', 'first_name', 'last_name',
