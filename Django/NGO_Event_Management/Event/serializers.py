@@ -6,7 +6,7 @@ from .models import Event
 class EventSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Event
-        fields = ['id', 'user_id', 'category', 'location', 'start_time',
-                  'end_time', 'adult_price', 'kid_price']
+        fields = ['user_id', 'id', 'event_name', 'category', 'location', 'start_time',
+                  'end_time', 'description', 'adult_price', 'kid_price']
 
 

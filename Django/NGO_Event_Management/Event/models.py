@@ -13,7 +13,7 @@ class Event(models.Model):
     start_time = models.DateTimeField(default=datetime.now)
     end_time = models.DateTimeField(default=datetime.now)
     description = models.CharField(max_length=100)
-    # image
+
     adult_price = models.DecimalField(max_digits=8, decimal_places=2, default=5.00)
     kid_price=models.DecimalField(max_digits=8, decimal_places=2, default=2.00)
 

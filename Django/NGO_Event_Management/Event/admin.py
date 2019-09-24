@@ -14,6 +14,10 @@ class EventAdmin(admin.ModelAdmin):
         'location',
         'start_time',
         'end_time',
+        'description',
+        'adult_price',
+        'kid_price',
+
     ]
 
 

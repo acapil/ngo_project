@@ -8,7 +8,7 @@ from datetime import datetime
 
 class EventRegistration(models.Model):
     user_id = models.ForeignKey(User, null=False, related_name='event_participant', on_delete=models.CASCADE)
-    event_id = models.ForeignKey(Event, null=False, related_name='event', on_delete=models.CASCADE)
+    event_id = models.ForeignKey(Event, null=False, related_name='event_identifier', on_delete=models.CASCADE)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     email = models.CharField(max_length=100)
