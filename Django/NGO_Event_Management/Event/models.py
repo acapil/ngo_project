@@ -6,7 +6,7 @@ from datetime import datetime
 
 
 class Event(models.Model):
-    user_id = models.ForeignKey(User, null=False, related_name='event_creator', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, null=False, related_name='event_creator', on_delete=models.CASCADE)
     event_name = models.CharField(max_length=100)
     category = models.CharField(max_length=100)
     location = models.CharField(max_length=100)
