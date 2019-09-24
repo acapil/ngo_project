@@ -1,6 +1,6 @@
 from django.db import models
 from user.models import User
-from event.models import Event
+from Event.models import Event
 from datetime import datetime
 
 # Create your models here.

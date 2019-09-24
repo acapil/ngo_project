@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from .models import Event
+from Event.models import Event
 
 
 class EventRegistrationSerializer(serializers.HyperlinkedModelSerializer):
