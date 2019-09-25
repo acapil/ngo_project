@@ -3,6 +3,7 @@
 POST  http://127.0.0.1:8000/event_registration/new/
 
 !!! required user_id and event_id passing along with POST request !!!
+!!! don't send total_price with the request, it is auto-calculated !!!
 
 Body 
 {
@@ -20,21 +21,17 @@ Body
 return: new registration for event and total_price is auto-caculated and hidden !!!!!!!!!!
 
 
-# Get a list of all event registration
-
+# Get a list of all event registration with total_price
 GET http://127.0.0.1:8000/event_registration/
 
 
-# Get a single event registration
-
+# Get a single event registration with total_price
 GET http://127.0.0.1:8000/event_registration/event_registration_id
 
 
 # Edit existing event registration
 
-
 !!! required user_id and event_id passing along with PATCH request !!!
-
 
 PATCH http://127.0.0.1:8000/event_registration/edit/event_registration_id
 
