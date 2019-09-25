@@ -50,31 +50,60 @@ def insert(request):
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['PUT'])
-def update(request, user_id):
+@api_view(['PATCH'])
+def change(request, user_id):
     try:
-        employee = User.objects.get(id=user_id)
+        user = User.objects.get(id=user_id)
     except User.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
-    if request.method == 'PUT':
-        serializer = UserSerializer(employee, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    if request.method == 'PATCH':
+        user.admin = request.data['admin']
+        user.email = request.data['email']
+        user.first_name = request.data['first_name']
+        user.last_name = request.data['last_name']
+        user.is_superuser = user.admin
+        user.is_staff = user.admin
+        user.save()
+        return Response(status=status.HTTP_201_CREATED)
     else:
         return Response(status=status.HTTP_400_BAD_REQUEST)
+
+# @api_view(['PATCH'])
+# def update(request, user_id):
+#     try:
+#         user = User.objects.get(id=user_id)
+#     except User.DoesNotExist:
+#         return Response(status=status.HTTP_404_NOT_FOUND)
+#     if request.method == 'PATCH':
+#
+#         serializer = UserSerializer(user, data=request.data)
+#         # serializer.admin = request.data['admin']
+#         print(serializer)
+#         print('xxx')
+#         print(request.data['admin'])
+#         print('xxxxxxx')
+#         print(serializer.admin)
+#         serializer.is_valid()
+#         serializer.save()
+#         return Response(serializer.data)
+#         # if serializer.is_valid():
+#         #     serializer.save()
+#         #     return Response(serializer.data)
+#         # else:
+#         #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+#     else:
+#         print('xxx')
+#         return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['DELETE'])
 def delete(request, user_id):
     try:
-        employee = User.objects.get(id=user_id)
+        user = User.objects.get(id=user_id)
     except User.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
     if request.method == 'DELETE':
-        employee.delete()
+        user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
     else:
         return Response(status=status.HTTP_400_BAD_REQUEST)
