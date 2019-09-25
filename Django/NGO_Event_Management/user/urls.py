@@ -27,7 +27,7 @@ from django.conf.urls import include
 urlpatterns = [
     url(r'^$', views.get_users, name='get_user_list'),
     url(r'^(?P<user_id>[0-9]+)$', views.get_user, name='get_user'),
-    url(r'^insert/$', views.insert, name='insert'),
+    # url(r'^insert/$', views.insert, name='insert'),
     # url(r'^update/(?P<user_id>[0-9]+)$', views.update, name='update'), # does not work
     url(r'^change/(?P<user_id>[0-9]+)$', views.change, name='change'),
     url(r'^delete/(?P<user_id>[0-9]+)$', views.delete, name='delete'),
