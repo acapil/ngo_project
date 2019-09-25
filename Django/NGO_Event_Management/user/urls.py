@@ -19,7 +19,7 @@ from django.urls import path
 from django.conf.urls import include
 
 # use create/ for registration
-# use auth/login for login
+# use auth/login for login, need a POST and will return a token
 # use auth/user with token in header for detailed of user (GET)
 # use auth/user with token in header for changing username, first_name, last-name, email (PUT)
 # use auth/password/change/ with token in header for
