@@ -64,7 +64,7 @@ def change(request, user_id):
         user.is_superuser = user.admin
         user.is_staff = user.admin
         user.save()
-        return Response(status=status.HTTP_201_CREATED)
+        return Response(status=status.HTTP_200_OK)
     else:
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
