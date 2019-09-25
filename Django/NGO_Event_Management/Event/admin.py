@@ -8,8 +8,9 @@ from .models import Event
 
 class EventAdmin(admin.ModelAdmin):
     list_display = [
-        'user_id',
         'event_name',
+        'id',
+        'user',
         'category',
         'location',
         'start_time',
