@@ -5,10 +5,10 @@ POST:   http://127.0.0.1:8000/user/create/
 
 Body	
 {
-    "username": "tinbui06",
+    "username": "tinbui",
     "password1": "Tethuynhde_1993",
     "password2": "Tethuynhde_1993",
-    "email": "tinbui06@gmail.com"
+    "email": "tinbui@gmail.com"
 }
 
 return: this will create an empty account with username and password, no name or admin role yet 
@@ -21,7 +21,7 @@ return: this will create an empty account with username and password, no name or
 # Log-in
 POST      http://127.0.0.1:8000/user/auth/login/
 {
-    "username":"tinbui02",
+    "username":"tinbui",
     "password":"Tethuynhde_1993"
 }
 return: return a token that will be used to change password
@@ -44,17 +44,17 @@ return: a list of all users with all fields
 GET:     http://127.0.0.1:8000/user/user_id
 
 
-return: info of users with correspon user_id
+return: info of users with corresponded user_id
 
 
-# Change user
+# Change user info
 
 PATCH:     http://127.0.0.1:8000/user/change/user_id
 Body
 {
     "first_name": "Tin",
     "last_name": "Bui",
-    "email": "tinbui16@gmail.com",
+    "email": "tinbui@gmail.com",
     "admin": true
 }
 

@@ -38,7 +38,7 @@ def get_event_registration(request, event_registration_id):
 
 
 @api_view(['POST'])
-def insert(request):
+def new(request):
     if request.method == 'POST':
         serializer = EventRegistrationSerializer(data=request.data)
         if serializer.is_valid():
@@ -50,13 +50,13 @@ def insert(request):
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['PUT'])
-def update(request, event_registration_id):
+@api_view(['PATCH'])
+def edit(request, event_registration_id):
     try:
         event_registration = EventRegistration.objects.get(id=event_registration_id)
     except EventRegistration.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
-    if request.method == 'PUT':
+    if request.method == 'PATCH':
         serializer = EventRegistrationSerializer(event_registration, data=request.data)
         if serializer.is_valid():
             serializer.save()

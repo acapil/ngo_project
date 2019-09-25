@@ -22,7 +22,7 @@ Body  !!!! this is multpart/form-data, not normal json which image is un uploade
     "location": "new york, new york",
     "start_time": "2019-09-25T22:16:22Z",
     "end_time": "2019-09-24T02:16:34Z",
-    "description": "tesgin2",
+    "description": "testing2",
     "image": "/media/60720432_2437112026339079_8182324384380223488_n.jpg",
     "adult_price": "7.00",
     "kid_price": "2.00"

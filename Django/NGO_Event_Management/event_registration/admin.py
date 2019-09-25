@@ -7,8 +7,8 @@ from .models import EventRegistration
 
 
 class EventRegistrationAdmin(admin.ModelAdmin):
-    list_display = ['id', 'user', 'event', 'first_name', 'last_name',
-                    'email', 'phone', 'address', 'quantity_adult', 'quantity_kid'
+    list_display = ['email', 'id', 'user', 'event', 'first_name', 'last_name',
+                    'phone', 'address', 'quantity_adult', 'quantity_kid', 'total_price'
                     ]
 
 

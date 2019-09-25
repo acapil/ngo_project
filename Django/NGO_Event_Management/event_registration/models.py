@@ -16,6 +16,12 @@ class EventRegistration(models.Model):
     address = models.CharField(max_length=100)
     quantity_adult = models.IntegerField(default=0)
     quantity_kid = models.IntegerField(default=0)
+    total_price = models.DecimalField(max_digits=8, decimal_places=2, editable=False)
+
+    def save(self, *args, **kwargs):
+        adult_price = getattr(self.event, 'adult_price')
+        self.total_price = self.quantity_adult * adult_price + self.quantity_kid
+        super(EventRegistration, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.first_name

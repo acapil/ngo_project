@@ -1,0 +1,56 @@
+# Make new registration for the event
+
+POST  http://127.0.0.1:8000/event_registration/new/
+
+!!! required user_id and event_id passing along with POST request !!!
+
+Body 
+{
+	"user": 1,
+	"event": 1,
+	"first_name": "Hien",
+	"last_name": "Nguyen",
+	"email": "tinhipvt@gmail.com",
+	"phone": "6602211834",
+	"address": "1052 LAKERIDGE DR",
+	"quantity_adult": 20,
+	"quantity_kid": 2
+}
+
+return: new registration for event and total_price is auto-caculated and hidden !!!!!!!!!!
+
+
+# Get a list of all event registration
+
+GET http://127.0.0.1:8000/event_registration/
+
+
+# Get a single event registration
+
+GET http://127.0.0.1:8000/event_registration/event_registration_id
+
+
+# Edit existing event registration
+
+
+!!! required user_id and event_id passing along with PATCH request !!!
+
+
+PATCH http://127.0.0.1:8000/event_registration/edit/event_registration_id
+
+{
+	"user": 1,
+	"event": 2,
+	"first_name": "Hien",
+	"last_name": "Nguyen",
+	"email": "tinhipvt@gmail.com",
+	"phone": "6602211834",
+	"address": "1052 LAKERIDGE DR",
+	"quantity_adult": 20,
+	"quantity_kid": 15
+}
+
+
+# Delete existing event registration
+
+Delete http://127.0.0.1:8000/event_registration/delete/event_registration_id
