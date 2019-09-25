@@ -91,10 +91,21 @@ return: this will change the password of the user with correspond "Token",
     "detail": "New password has been saved."
 }
 
-GET http://127.0.0.1:8000/user/get_id/token/
+#  GET    http://127.0.0.1:8000/user/get_id/token/
 
 Return: user_id and token corresponded to provided token
+{
+    "user_id": 1,
+    "admin": true,
+    "token": "dee016f1dbf4f5069060d36e41dfab536fc2bdbb"
+}
 
-GET http://127.0.0.1:8000/user/get_token/user_id/
+
+#   GET     http://127.0.0.1:8000/user/get_token/user_id/
 
 Return: user_id and token corresponded to provided user_id
+{
+    "user_id": 1,
+    "admin": true,
+    "token": "dee016f1dbf4f5069060d36e41dfab536fc2bdbb"
+}

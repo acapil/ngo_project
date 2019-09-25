@@ -46,7 +46,8 @@ def get_id_from_token(request, token):
         return Response(status=status.HTTP_404_NOT_FOUND)
     if request.method == 'GET':
         user_id = getattr(obj, 'user_id')
-        return Response({'user_id': user_id, 'token': token})
+        admin = getattr(User.objects.get(id=user_id), 'admin')
+        return Response({'user_id': user_id, 'admin': admin, 'token': token})
     else:
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
@@ -59,7 +60,8 @@ def get_token_from_id(request, user_id):
         return Response(status=status.HTTP_404_NOT_FOUND)
     if request.method == 'GET':
         token = getattr(obj, 'key')
-        return Response({'user_id': user_id, 'token': token})
+        admin = getattr(User.objects.get(id=user_id), 'admin')
+        return Response({'user_id': user_id, 'admin': admin, 'token': token})
     else:
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
