@@ -1,0 +1,93 @@
+
+# User Registration
+
+POST:   http://127.0.0.1:8000/user/create/
+
+Body	
+{
+    "username": "tinbui",
+    "password1": "Tethuynhde_1993",
+    "password2": "Tethuynhde_1993",
+    "email": "tinbui@gmail.com"
+}
+
+return: this will create an empty account with username and password, no name or admin role yet 
+
+{
+    "key": "ea347e6ba07b16c263f6af67a7b6996f08dda131"
+}
+
+
+# Log-in
+POST      http://127.0.0.1:8000/user/auth/login/
+{
+    "username":"tinbui",
+    "password":"Tethuynhde_1993"
+}
+return: return a token that will be used to change password
+
+{
+    "key": "66dcef6aecc562092d4678719647813b05e5c88e"
+}
+
+
+# Get list of users
+
+GET:     http://127.0.0.1:8000/user/
+
+
+return: a list of all users with all fields
+
+
+# Get list of users
+
+GET:     http://127.0.0.1:8000/user/user_id
+
+
+return: info of users with corresponded user_id
+
+
+# Change user info
+
+PATCH:     http://127.0.0.1:8000/user/change/user_id
+Body
+{
+    "first_name": "Tin",
+    "last_name": "Bui",
+    "email": "tinbui@gmail.com",
+    "admin": true
+}
+
+
+return: change info of users with correspond user_id, all 4 fields must has value
+I can make it to change username too but for the sake of simplicity, let's not do that now 
+
+
+# Delete user
+
+DELETE:     http://127.0.0.1:8000/user/delete/user_id
+
+return: delete the user with correspond user_id
+
+
+# This part is hard-core !!!!!!!!!
+
+# Change password
+
+POST:      http://127.0.0.1:8000/user/auth/password/change/
+
+Header:
+{"Authorization": "Token 66dcef6aecc562092d4678719647813b05e5c88e"}
+
+Body
+{
+    "new_password1":"Tethuynhde_2211",
+    "new_password2":"Tethuynhde_2211",
+    "old_password":"Tethuynhde_19931"
+}
+
+return: this will change the password of the user with correspond "Token", 
+{
+    "detail": "New password has been saved."
+}
+

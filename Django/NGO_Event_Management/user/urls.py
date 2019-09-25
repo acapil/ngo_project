@@ -33,3 +33,4 @@ urlpatterns = [
     path('auth/', include('rest_auth.urls')),
     path('create/', include('rest_auth.registration.urls')),
 ]
+
