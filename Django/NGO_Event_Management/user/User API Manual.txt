@@ -24,10 +24,19 @@ POST      http://127.0.0.1:8000/user/auth/login/
     "username":"tinbui",
     "password":"Tethuynhde_1993"
 }
-return: return a token that will be used to change password
+return: return a token and user info that can be used to change password & verify admin role
 
 {
-    "key": "66dcef6aecc562092d4678719647813b05e5c88e"
+    "key": "dee016f1dbf4f5069060d36e41dfab536fc2bdbb",
+    "user": {
+        "id": 1,
+        "first_name": "Tin",
+        "last_name": "Bui",
+        "email": "tinbui@gmail.com",
+        "username": "tinbui",
+        "password": "pbkdf2_sha256$150000$qKSm32GAOOOL$VUSwlZXbZFKxK89WWQxlfY0V0h7rNakf+uNDOHm2sRE=",
+        "admin": true
+    }
 }
 
 
