@@ -30,7 +30,7 @@ Body  !!!! this is multpart/form-data, not normal json which image is un uploade
 
 Return: an event with all info, for image, it will be a string to django root media folder location
 Check out this tutorial: https://learning.getpostman.com/docs/postman/sending_api_requests/requests/
-
+https://www.techiediaries.com/django-rest-image-file-upload-tutorial/
 
 # Edit event
 PATCH  http://127.0.0.1:8000/event/edit/event_id/
@@ -52,7 +52,7 @@ Body  !!!! this is multpart/form-data, not normal json which image is un uploade
 Return: edit event with corresponded event_id
 for image, it will be a string to django root media folder location
 Check out this tutorial: https://learning.getpostman.com/docs/postman/sending_api_requests/requests/
-
+https://www.techiediaries.com/django-rest-image-file-upload-tutorial/
 
 # Delete event
 DELETE  http://127.0.0.1:8000/event/delete/event_id/
