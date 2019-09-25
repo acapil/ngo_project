@@ -19,7 +19,7 @@ from . import views
 urlpatterns = [
     url(r'^$', views.get_event_registrations, name='get_event_registrations'),
     url(r'^(?P<event_registration_id>[0-9]+)$', views.get_event_registration, name='get_event_registration'),
-    url(r'^insert/$', views.insert, name='insert'),
-    url(r'^update/(?P<event_registration_id>[0-9]+)$', views.update, name='update'),
+    url(r'^new/$', views.new, name='new'),
+    url(r'^edit/(?P<event_registration_id>[0-9]+)$', views.edit, name='edit'),
     url(r'^delete/(?P<event_registration_id>[0-9]+)$', views.delete, name='delete'),
 ]

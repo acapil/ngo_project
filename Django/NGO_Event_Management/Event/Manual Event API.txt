@@ -1,0 +1,63 @@
+
+
+#  Get a list of all events
+GET  http://127.0.0.1:8000/event/
+
+
+#  Get info of a single event
+GET  http://127.0.0.1:8000/event/event_id
+
+
+# Add new event
+POST  http://127.0.0.1:8000/event/new/
+
+!!! Has to send user_id as foreign key along with the POST  !!!
+
+Body  !!!! this is multpart/form-data, not normal json which image is un uploaded file !!!!
+
+{
+    "user": 1,
+    "event_name": "testing2",
+    "category": "other",
+    "location": "new york, new york",
+    "start_time": "2019-09-25T22:16:22Z",
+    "end_time": "2019-09-24T02:16:34Z",
+    "description": "testing2",
+    "image": "/media/60720432_2437112026339079_8182324384380223488_n.jpg",
+    "adult_price": "7.00",
+    "kid_price": "2.00"
+} 
+
+Return: an event with all info, for image, it will be a string to django root media folder location
+Check out this tutorial: https://learning.getpostman.com/docs/postman/sending_api_requests/requests/
+https://www.techiediaries.com/django-rest-image-file-upload-tutorial/
+
+# Edit event
+PATCH  http://127.0.0.1:8000/event/edit/event_id/
+Body  !!!! this is multpart/form-data, not normal json which image is un uploaded file !!!!
+
+{
+    "user": 1,
+    "event_name": "testing2",
+    "category": "other",
+    "location": "new york, new york",
+    "start_time": "2019-09-25T22:16:22Z",
+    "end_time": "2019-09-24T02:16:34Z",
+    "description": "tesgin2",
+    "image": "/media/download.png",
+    "adult_price": "7.00",
+    "kid_price": "2.00"
+}
+
+Return: edit event with corresponded event_id
+for image, it will be a string to django root media folder location
+Check out this tutorial: https://learning.getpostman.com/docs/postman/sending_api_requests/requests/
+https://www.techiediaries.com/django-rest-image-file-upload-tutorial/
+
+# Delete event
+DELETE  http://127.0.0.1:8000/event/delete/event_id/
+return: delete event with corresponded event_id
+
+
+
+

@@ -15,11 +15,22 @@ Including another URLconf
 """
 from django.conf.urls import  url
 from . import views
+from django.urls import path
+from django.conf.urls import include
+
+# use create/ for registration
+# use auth/login for login, need a POST and will return a token
+# use auth/user with token in header for detailed of user (GET)
+# use auth/user with token in header for changing username, first_name, last-name, email (PUT)
+# use auth/password/change/ with token in header for
 
 urlpatterns = [
     url(r'^$', views.get_users, name='get_user_list'),
-    url(r'^(?P<pk>[0-9]+)$', views.get_user, name='get_user'),
-    url(r'^insert/$', views.insert, name='insert'),
-    url(r'^update/(?P<user_id>[0-9]+)$', views.update, name='update'),
+    url(r'^(?P<user_id>[0-9]+)$', views.get_user, name='get_user'),
+    # url(r'^insert/$', views.insert, name='insert'),
+    # url(r'^update/(?P<user_id>[0-9]+)$', views.update, name='update'), # does not work
+    url(r'^change/(?P<user_id>[0-9]+)$', views.change, name='change'),
     url(r'^delete/(?P<user_id>[0-9]+)$', views.delete, name='delete'),
+    path('auth/', include('rest_auth.urls')),
+    path('create/', include('rest_auth.registration.urls')),
 ]
