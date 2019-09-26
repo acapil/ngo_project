@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app-component/app.component';
 import { UsersComponent } from './users/users.component';
 import { UserServeService } from './user-serve.service';
@@ -14,6 +14,10 @@ import { LoginComponent } from './login/login.component';
 import { EventRegistrationComponent } from './event-registration/event-registration.component';
 import { Globals } from './globals';
 import { FormsModule } from '@angular/forms';
+import { UserviewComponent } from './userview/userview.component';
+import { RouterModule, Routes } from '@angular/router';
+import { AppRoutingModule, routingComponents } from './app-component/app-routing.module';
+import { EventdetailComponent } from './eventdetail/eventdetail.component'; 
 
 @NgModule({
   declarations: [
@@ -22,6 +26,10 @@ import { FormsModule } from '@angular/forms';
     EventsComponent,
     LoginComponent,
     EventRegistrationComponent,
+    UserviewComponent,
+    routingComponents,
+    EventdetailComponent
+
     
   ],
   imports: [
@@ -30,6 +38,7 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+    //RouterModule.forRoot()
   ],
   providers: [UserServeService,EventServeService,EventRegistrationServeService,Globals],
   bootstrap: [AppComponent]
