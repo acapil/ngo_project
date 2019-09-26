@@ -19,23 +19,22 @@ export class UsersComponent implements OnInit {
       () => console.log('the sequence completed!')
     );
     this.uploadForm = this.fb.group({
-      id: [''],
-      first_name: [''],
-      last_name: [''],
-      department: [''],
-      salary: ['']
+      username: [''],
+      password1: [''],
+      password2: [''],
+      email: ['']
     });
   }
   onDelete(users_id) {
     this.http.delete('http://127.0.0.1:8000/user/delete/' + users_id).subscribe(
-      () => console.log('Success'),
-      (err) => console.log(err)
+      (res) => console.log(res),
+      (err) => alert(err)
       
       );
     return 'success'
   }
   onInsert(formData) {
-    this.http.post<any>('http://127.0.0.1:8000/employee/insert/', formData).subscribe(
+    this.http.post<any>('http://127.0.0.1:8000/user/create/', formData).subscribe(
       (res) => console.log(res),
       (err) => console.log(err)
     );

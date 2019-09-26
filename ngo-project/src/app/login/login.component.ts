@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
     this._userService.onLogin(this.input).subscribe(
       data => {
         this._globals.key=data.key;
+        console.log(this._globals.key);
       },
       error =>{
         console.log('error',error);
