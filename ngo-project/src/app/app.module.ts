@@ -17,7 +17,15 @@ import { FormsModule } from '@angular/forms';
 import { UserviewComponent } from './userview/userview.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule, routingComponents } from './app-component/app-routing.module';
-import { EventdetailComponent } from './eventdetail/eventdetail.component'; 
+import { EventdetailComponent } from './eventdetail/eventdetail.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
+
+// Material section
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -29,8 +37,6 @@ import { EventdetailComponent } from './eventdetail/eventdetail.component';
     UserviewComponent,
     routingComponents,
     EventdetailComponent
-
-    
   ],
   imports: [
     BrowserModule,
@@ -38,9 +44,17 @@ import { EventdetailComponent } from './eventdetail/eventdetail.component';
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+    BrowserAnimationsModule,
     //RouterModule.forRoot()
+
+    // Material
+    MatButtonModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatCardModule
   ],
-  providers: [UserServeService,EventServeService,EventRegistrationServeService,Globals],
+  providers: [UserServeService, EventServeService, EventRegistrationServeService,Globals],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
