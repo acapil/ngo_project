@@ -17,7 +17,8 @@ import { FormsModule } from '@angular/forms';
 import { UserviewComponent } from './userview/userview.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule, routingComponents } from './app-component/app-routing.module';
-import { EventdetailComponent } from './eventdetail/eventdetail.component'; 
+import { EventdetailComponent } from './eventdetail/eventdetail.component';
+import { UsersAddComponent } from './useradd/useradd.component'; 
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { EventdetailComponent } from './eventdetail/eventdetail.component';
     EventRegistrationComponent,
     UserviewComponent,
     routingComponents,
-    EventdetailComponent
+    EventdetailComponent,
+    UsersAddComponent
 
     
   ],

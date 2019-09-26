@@ -4,12 +4,13 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
+
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css']
+  selector: 'app-useradd',
+  templateUrl: './useradd.component.html',
+  styleUrls: ['./useradd.component.css']
 })
-export class UsersComponent implements OnInit {
+export class UsersAddComponent implements OnInit {
   public users = [];
   public uploadForm: FormGroup;
   constructor(private _userService: UserServeService, private router: Router, private http: HttpClient,private fb: FormBuilder) { }
@@ -26,22 +27,14 @@ export class UsersComponent implements OnInit {
       email: ['']
     });
   }
-  onDelete(users_id) {
-    this.http.delete('http://127.0.0.1:8000/user/delete/' + users_id).subscribe(
-      (res) => console.log(res),
-      (err) => alert(err)
-      
-      );
-    return 'success'
-  }
-  onInsert(formData) {
+  onInsert1(formData) {
     this.http.post<any>('http://127.0.0.1:8000/user/create/', formData).subscribe(
-      (res) => console.log(res),
+      (res) => {console.log(res);
+                this.router.navigate(['/user'])
+      },
       (err) => console.log(err)
     );
   }
-  addUser(){
-    this.router.navigate(['/useradd'])
-  }
+ 
   }
 

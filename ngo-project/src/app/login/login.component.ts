@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
     this._userService.onLogin(this.input).subscribe(
       data => {
         this._globals.key=data.key;
-        this.router.navigate(['/user'])
+        this.router.navigate(['/user']);
         console.log(this._globals.key);
       },
       error =>{
