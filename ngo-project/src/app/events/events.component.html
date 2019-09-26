@@ -1,0 +1,78 @@
+
+<style>
+    .evenStyle {
+      background-color: red;
+      }
+  .oddStyle {
+      background-color: green;
+  }
+  .red {
+      color: red;
+  }
+  .size {
+      font-size: 20px;
+  }
+  </style>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-2">
+            NGO
+		</div>
+		<div class="col-md-9">
+		</div>
+		<div class="col-md-1">
+            Admin
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-2">
+			 <div>
+			<button type="button" class="btn btn-outline-primary">
+			User Management
+            </button> 
+            </div>
+            <div>
+            <button type="button" class="btn btn-outline-primary">
+            Event Management
+            </button> 
+            </div>
+            <div>
+            <button type="button" class="btn btn-outline-primary">
+            User View
+            </button> 
+            </div>
+		</div>
+		<div class="col-md-10">
+                <table class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th>Id</th>
+                            <th>User ID</th>
+                            <th>Category</th>
+                            <th>Location</th>
+                            <th>Start Time</th>
+                            <th>End Time</th>
+                            <th>Adult Price</th>
+                            <th>Child Price</th>
+                            <th>Image</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let ev of events let o = odd; let e = even"
+                          [ngClass] = "{oddStyle: o, evenStyle: e}">
+                          <td>{{ev.id}}</td>
+                          <td>{{ev.user_id}}</td>
+                          <td>{{ev.category}}</td>
+                          <td>{{ev.location}}</td>
+                          <td>{{ev.start_time }}</td>
+                          <td>{{ev.end_time }}</td>
+                          <td>{{ev.adult_price}}</td>
+                          <td>{{ev.kid_price}}</td>
+                          <td><img src="http://127.0.0.1:8000{{ev.image}}"></td>
+                          </tr>    
+                        </tbody>
+                      </table>
+		</div>
+	</div>
+</div>
+ 

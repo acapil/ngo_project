@@ -10,4 +10,3 @@ class EventSerializer(serializers.ModelSerializer):
                   'start_time', 'end_time', 'description', 'image',
                   'adult_price', 'kid_price']
 
-

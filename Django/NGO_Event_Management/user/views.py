@@ -6,6 +6,7 @@ from user.serializers import UserSerializer
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
+from rest_framework.authtoken.models import Token
 
 # Create your views here.
 
@@ -33,6 +34,32 @@ def get_user(request, user_id):
     if request.method == 'GET':
         serializer = UserSerializer(user)
         return Response(serializer.data)
+    else:
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET'])
+def get_id_from_token(request, token):
+    try:
+        obj = Token.objects.get(key=token)
+    except Token.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    if request.method == 'GET':
+        user_id = getattr(obj, 'user_id')
+        return Response({'user_id': user_id, 'token': token})
+    else:
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET'])
+def get_token_from_id(request, user_id):
+    try:
+        obj = Token.objects.get(user_id = user_id)
+    except Token.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    if request.method == 'GET':
+        token = getattr(obj, 'key')
+        return Response({'user_id': user_id, 'token': token})
     else:
         return Response(status=status.HTTP_400_BAD_REQUEST)
 

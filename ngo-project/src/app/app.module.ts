@@ -7,22 +7,31 @@ import { AppComponent } from './app-component/app.component';
 import { UsersComponent } from './component/users/users.component';
 import { UserServeService } from './user-serve.service';
 import { HttpClientModule } from '@angular/common/http';
-import { EditUserFormComponent } from './component/edit-user-form/edit-user-form.component';
-
+import { EventServeService } from './event-serve.service';
+import { EventRegistrationServeService } from './event-registration-serve.service';
+import { EventsComponent } from './events/events.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+import { EventRegistrationComponent } from './event-registration/event-registration.component';
+import { Globals } from './globals';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     UsersComponent,
-    EditUserFormComponent
+    EventsComponent,
+    LoginComponent,
+    EventRegistrationComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     FormsModule
   ],
-  providers: [UserServeService],
+  providers: [UserServeService,EventServeService,EventRegistrationServeService,Globals],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
