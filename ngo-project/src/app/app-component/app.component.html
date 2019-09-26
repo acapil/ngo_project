@@ -1,4 +1,30 @@
-<h2> {{title }} is here hooligans </h2>
+<mat-drawer-container class="mycontainer" autosize>
+    <mat-drawer #drawer class="sidenav">
+        <button color="primary" mat-button routerLink="/users">Users </button>
+        <button color="primary" mat-button routerLink="/event-management">Manage Event </button>
+        <button color="primary" mat-button routerLink="/events">View Events </button>
+    </mat-drawer>
+    <div class="sidenav-content">
+        <mat-toolbar color="primary">
+            <mat-toolbar-row>
+                <button mat-icon-button (click)="drawer.toggle()">
+                    <mat-icon>menu</mat-icon>
+                </button>
 
-<app-edit-user-form></app-edit-user-form>
-<app-users></app-users>
+                <span> {{title}} </span>
+                <span class="spacer"></span>
+                <mat-icon>favorite</mat-icon>
+            </mat-toolbar-row>
+        </mat-toolbar>
+        
+        <router-outlet></router-outlet>
+        
+    </div>
+
+    <app-edit-user-form></app-edit-user-form>
+    <app-users></app-users>
+    <app-event-card></app-event-card>
+    
+</mat-drawer-container>
+
+
