@@ -47,7 +47,7 @@
       <tbody>
         <tr *ngFor="let ev of events let o = odd; let e = even"
         [ngClass] = "{oddStyle: o, evenStyle: e}">
-        <td><img src="http://127.0.0.1:8000{{ev.image}}"></td>
+        <td><button> <img src="http://127.0.0.1:8000{{ev.image}}"> </button></td>
         <td>{{ev.location}}</td>
         </tr>    
       </tbody>

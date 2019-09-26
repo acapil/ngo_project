@@ -5,40 +5,38 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css']
+  selector: 'app-eventnew',
+  templateUrl: './eventnew.component.html',
+  styleUrls: ['./eventnew.component.css']
 })
-export class UsersComponent implements OnInit {
-  public users = [];
+export class EventnewComponent implements OnInit {
+  public events = [];
   public uploadForm: FormGroup;
   constructor(private _userService: UserServeService, private router: Router, private http: HttpClient,private fb: FormBuilder) { }
 
   ngOnInit() {
     this._userService.getUsers().subscribe(
-      (data) => this.users = data,
+      (data) => this.events = data,
       () => console.log('the sequence completed!')
     );
     this.uploadForm = this.fb.group({
-      username: [''],
-      password1: [''],
-      password2: [''],
-      email: ['']
+      user: [''],
+      event_name: [''],
+      category: [''],
+      location: [''],
+      start_time: [''],
+      end_time: [''],
+      description: [''],
+      adult_price: [''],
+      kid_price: [''],
+
     });
   }
-  onDelete(users_id) {
-    this.http.delete('http://127.0.0.1:8000/user/delete/' + users_id).subscribe(
-      (res) =>{ console.log(res);
-                location.reload()
+  onInsert1(formData) {
+    this.http.post<any>('http://127.0.0.1:8000/event/new/', formData).subscribe(
+      (res) => {console.log(res);
+                this.router.navigate(['/eventmanage'])
       },
-      (err) => alert(err)
-      
-      );
-    return 'success'
-  }
-  onInsert(formData) {
-    this.http.post<any>('http://127.0.0.1:8000/user/create/', formData).subscribe(
-      (res) => console.log(res),
       (err) => console.log(err)
     );
   }
@@ -51,8 +49,6 @@ export class UsersComponent implements OnInit {
   navuserv(){
     this.router.navigate(['/userview'])
   }
-  addUser(){
-    this.router.navigate(['/useradd'])
-  }
+ 
   }
 

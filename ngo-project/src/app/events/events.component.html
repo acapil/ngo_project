@@ -61,7 +61,7 @@
                           <tr *ngFor="let ev of events let o = odd; let e = even"
                           [ngClass] = "{oddStyle: o, evenStyle: e}">
                           <td>{{ev.id}}</td>
-                          <td>{{ev.user_id}}</td>
+                          <td>{{ev.user}}</td>
                           <td>{{ev.category}}</td>
                           <td>{{ev.location}}</td>
                           <td>{{ev.start_time }}</td>
@@ -69,10 +69,14 @@
                           <td>{{ev.adult_price}}</td>
                           <td>{{ev.kid_price}}</td>
                           <td><img src="http://127.0.0.1:8000{{ev.image}}"></td>
+                          <td><button type="button" class="btn btn-primary"  (click)="onDelete(ev.id)">Delete</button>
+                            <button type="button" class="btn btn-primary" (click)="helpWindow($event)">Edit</button></td>
                           </tr>    
                         </tbody>
+                        <div>
+                          <button type="button" (click)="addEvent()">Add Event</button>
+                      </div>
                       </table>
 		</div>
 	</div>
 </div>
- 

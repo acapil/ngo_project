@@ -18,7 +18,8 @@ import { UserviewComponent } from './userview/userview.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule, routingComponents } from './app-component/app-routing.module';
 import { EventdetailComponent } from './eventdetail/eventdetail.component';
-import { UsersAddComponent } from './useradd/useradd.component'; 
+import { UsersAddComponent } from './useradd/useradd.component';
+import { EventnewComponent } from './eventnew/eventnew.component'; 
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { UsersAddComponent } from './useradd/useradd.component';
     UserviewComponent,
     routingComponents,
     EventdetailComponent,
-    UsersAddComponent
+    UsersAddComponent,
+    EventnewComponent
 
     
   ],
