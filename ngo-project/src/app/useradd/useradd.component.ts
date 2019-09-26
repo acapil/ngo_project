@@ -35,6 +35,15 @@ export class UsersAddComponent implements OnInit {
       (err) => console.log(err)
     );
   }
+  navuser(){
+    this.router.navigate(['/user'])
+  }
+  navevent(){
+    this.router.navigate(['/eventmanage'])
+  }
+  navuserv(){
+    this.router.navigate(['/userview'])
+  }
  
   }
 

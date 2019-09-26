@@ -28,7 +28,9 @@ export class UsersComponent implements OnInit {
   }
   onDelete(users_id) {
     this.http.delete('http://127.0.0.1:8000/user/delete/' + users_id).subscribe(
-      (res) => console.log(res),
+      (res) =>{ console.log(res);
+                this.router.navigate(['/user'])
+      },
       (err) => alert(err)
       
       );
@@ -39,6 +41,15 @@ export class UsersComponent implements OnInit {
       (res) => console.log(res),
       (err) => console.log(err)
     );
+  }
+  navuser(){
+    this.router.navigate(['/user'])
+  }
+  navevent(){
+    this.router.navigate(['/eventmanage'])
+  }
+  navuserv(){
+    this.router.navigate(['/userview'])
   }
   addUser(){
     this.router.navigate(['/useradd'])

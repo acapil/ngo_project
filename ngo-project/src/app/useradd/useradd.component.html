@@ -1,8 +1,57 @@
-<form [formGroup] = "uploadForm" (ngSubmit) = "onInsert1(uploadForm.value)">
-    <input name="username" formControlName="username" placeholder='User'>
-    <input name="password1" formControlName="password1" placeholder='Password'>
-    <input name="password2" formControlName="password2" placeholder='Repeat Password'>
-    <input name="email" formControlName="email" placeholder='Email'>
-    <button type="submit">Save</button>
-    <div></div>
-</form>
+
+<style>
+    .evenStyle {
+      background-color: red;
+      }
+  .oddStyle {
+      background-color: green;
+  }
+  .red {
+      color: red;
+  }
+  .size {
+      font-size: 20px;
+  }
+  </style>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-2">
+            NGO
+		</div>
+		<div class="col-md-9">
+		</div>
+		<div class="col-md-1">
+            Admin
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-2">
+			 <div>
+			<button type="button" class="btn btn-outline-primary" (click)="navuser()">
+			User Management
+            </button> 
+            </div>
+            <div>
+            <button type="button" class="btn btn-outline-primary" (click)="navevent()">
+            Event Management
+            </button> 
+            </div>
+            <div>
+            <button type="button" class="btn btn-outline-primary" (click)="navuserv()">
+            User View
+            </button> 
+            </div>
+		</div>
+		<div class="col-md-10">
+            <form [formGroup] = "uploadForm" (ngSubmit) = "onInsert1(uploadForm.value)">
+                <input name="username" formControlName="username" placeholder='User'>
+                <input name="password1" formControlName="password1" placeholder='Password'>
+                <input name="password2" formControlName="password2" placeholder='Repeat Password'>
+                <input name="email" formControlName="email" placeholder='Email'>
+                <button type="submit">Save</button>
+                <div></div>
+            </form>
+		</div>
+	</div>
+</div>
+ 

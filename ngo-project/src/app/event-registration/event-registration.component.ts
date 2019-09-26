@@ -11,5 +11,6 @@ export class EventRegistrationComponent implements OnInit {
 
   ngOnInit() {
   }
+  
 
 }

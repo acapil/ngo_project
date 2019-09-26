@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EventServeService } from '../event-serve.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-userview',
   templateUrl: './userview.component.html',
@@ -7,7 +8,7 @@ import { EventServeService } from '../event-serve.service';
 })
 export class UserviewComponent implements OnInit {
   public events = [];
-  constructor(private _eventService: EventServeService) { }
+  constructor(private _eventService: EventServeService, private router:Router) { }
 
   ngOnInit() {
     this._eventService.getEvents().subscribe(
@@ -15,6 +16,14 @@ export class UserviewComponent implements OnInit {
       () => console.log('the sequence completed!')
     );
   }
-  
+  navuser(){
+    this.router.navigate(['/user'])
+  }
+  navevent(){
+    this.router.navigate(['/eventmanage'])
+  }
+  navuserv(){
+    this.router.navigate(['/userview'])
+  }
 
 }
