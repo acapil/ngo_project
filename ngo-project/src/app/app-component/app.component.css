@@ -10,6 +10,9 @@
     min-width: 200px;
 }
 
+.sidenav {
+    padding-top: 50px;
+}
 .sidenav-content {
     display: flex;
 }
@@ -22,4 +25,9 @@
 
 .spacer {
     flex: 1 1 auto;
+}
+
+.pagecontent {
+    padding: 50px;
+    width: 80%;
 }
