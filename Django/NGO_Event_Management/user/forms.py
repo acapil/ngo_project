@@ -14,8 +14,5 @@ class CustomUserChangeForm(UserChangeForm):
 
     class Meta:
         model = User
-<<<<<<< HEAD
         fields = UserChangeForm.Meta.fields
-=======
-        fields = UserChangeForm.Meta.fields
->>>>>>> 0f3342054da0f2978b667e9424aae280ee97f2e1
+

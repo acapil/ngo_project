@@ -9,21 +9,29 @@ import { HttpClientModule } from '@angular/common/http';
 import { EventServeService } from './event-serve.service';
 import { EventRegistrationServeService } from './event-registration-serve.service';
 import { EventsComponent } from './events/events.component';
-
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+import { EventRegistrationComponent } from './event-registration/event-registration.component';
+import { Globals } from './globals';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     UsersComponent,
     EventsComponent,
+    LoginComponent,
+    EventRegistrationComponent,
+    
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
   ],
-  providers: [UserServeService,EventServeService,EventRegistrationServeService],
+  providers: [UserServeService,EventServeService,EventRegistrationServeService,Globals],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

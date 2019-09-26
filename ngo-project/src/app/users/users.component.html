@@ -62,9 +62,21 @@
                           <td>{{us.last_name|titlecase}}</td>
                           <td>{{us.email}}</td>
                           <td>{{us.password }}</td>
-                          <td>{{us.role }}</td>
-                          </tr>    
+                          <td>{{us.admin }}</td>
+                          <td><button type="button" class="btn btn-primary"  (click)="onDelete(us.id)">Delete</button>
+                            <button type="button" class="btn btn-primary" (click)="helpWindow($event)">Edit</button></td>
+                           
+                          </tr>   
                         </tbody>
+                        <div>
+                          <form [formGroup] = "uploadForm" (ngSubmit) = "onInsert(uploadForm.value)">
+                                  <input name="first_name" formControlName="first_name">
+                                  <input name="last_name" formControlName="last_name">
+                                  <input name="department" formControlName="department">
+                                  <input name="salary" formControlName="salary">
+                                  <button type="submit">Save</button>
+                          </form>
+                      </div>
                       </table>
 		</div>
 	</div>
