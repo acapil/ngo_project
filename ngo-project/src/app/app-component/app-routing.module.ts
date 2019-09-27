@@ -10,6 +10,7 @@ import { UsersAddComponent } from '../useradd/useradd.component';
 import { EventnewComponent } from '../eventnew/eventnew.component';
 import { EventlistComponent } from '../eventlist/eventlist.component';
 import { UsereditComponent } from '../useredit/useredit.component';
+import { EventeditComponent } from '../eventedit/eventedit.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'eventadd', component: EventnewComponent },
   { path: 'eventlist', component: EventlistComponent },
   { path: 'useredit/:id', component: UsereditComponent },
+  { path: 'eventedit/:id', component: EventeditComponent },
   
 ];
 
@@ -31,5 +33,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [LoginComponent, UsersComponent,EventsComponent,EventdetailComponent,
+export const routingComponents = [LoginComponent,UsereditComponent,EventeditComponent,UsersComponent,EventsComponent,EventdetailComponent,
   UserviewComponent,EventRegistrationComponent,UsersAddComponent,EventnewComponent,EventlistComponent]

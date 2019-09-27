@@ -21,7 +21,8 @@ import { EventdetailComponent } from './eventdetail/eventdetail.component';
 import { UsersAddComponent } from './useradd/useradd.component';
 import { EventnewComponent } from './eventnew/eventnew.component';
 import { EventlistComponent } from './eventlist/eventlist.component';
-import { UsereditComponent } from './useredit/useredit.component'; 
+import { UsereditComponent } from './useredit/useredit.component';
+import { EventeditComponent } from './eventedit/eventedit.component'; 
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { UsereditComponent } from './useredit/useredit.component';
     UsersAddComponent,
     EventnewComponent,
     EventlistComponent,
-    UsereditComponent
+    UsereditComponent,
+    EventeditComponent
 
     
   ],

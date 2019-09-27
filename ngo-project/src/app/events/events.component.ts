@@ -48,6 +48,9 @@ export class EventsComponent implements OnInit {
       (err) => console.log(err)
     );
   }
+  onEdit(e_id){
+    this.router.navigate(['/eventedit/'+e_id])
+  }
   navuser(){
     this.router.navigate(['/user'])
   }

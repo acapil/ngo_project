@@ -1,0 +1,63 @@
+<style>
+    .evenStyle {
+      background-color: red;
+      }
+  .oddStyle {
+      background-color: green;
+  }
+  .red {
+      color: red;
+  }
+  .size {
+      font-size: 20px;
+  }
+  </style>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-2">
+            NGO
+		</div>
+		<div class="col-md-9">
+		</div>
+		<div class="col-md-1">
+            Admin
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-2">
+			 <div>
+			<button type="button" class="btn btn-outline-primary" (click)="navuser()">
+			User Management
+            </button> 
+            </div>
+            <div>
+            <button type="button" class="btn btn-outline-primary" (click)="navevent()">
+            Event Management
+            </button> 
+            </div>
+            <div>
+            <button type="button" class="btn btn-outline-primary" (click)="navuserv()">
+            User View
+            </button> 
+            </div>
+		</div>
+		<div class="col-md-10">
+            <form [formGroup] = "uploadForm" (ngSubmit) = "onInsert1(uploadForm.value)">
+                <input name="user" formControlName="user" placeholder='User'>
+                <input name="event_name" formControlName="event_name" placeholder='Event Name'>
+                <input name="category" formControlName="category" placeholder='Category'>
+                <input name="location" formControlName="location" placeholder='Location'>
+                <input name="start_time" formControlName="start_time" placeholder='Start Time'>
+                <input name="end_time" formControlName="end_time" placeholder='End Time'>
+                <input name="description" formControlName="description" placeholder='Description'>
+                <input name="adult_price" formControlName="adult_price" placeholder='Adult Price'>
+                <input name="kid_price" formControlName="kid_price" placeholder='Kid Price'>
+                <button type="submit" >Edit Event</button>
+            </form>
+            <form [formGroup]="imageForm">
+                <input type="file" name="file" (change)="onUpload($event)">
+            </form>
+            
+		</div>
+	</div>
+</div>
