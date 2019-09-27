@@ -17,4 +17,10 @@ export class EventlistComponent implements OnInit {
       () => console.log('the sequence completed!')
     );
   }
+  details(id){
+    this.router.navigate(['/eventdetail/'+id]);
+  }
+  selectImg(passevent){
+    this.router.navigate(['/eventdetail'])
+  }
 }

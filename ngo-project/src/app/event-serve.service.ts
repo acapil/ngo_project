@@ -13,6 +13,10 @@ getEvents(): Observable<Events[]>{
 
   return this.http.get<Events[]>(this._url);
 }
+getEvent(num): Observable<any>{
+
+  return this.http.get<any>("http://127.0.0.1:8000/event/"+num);
+}
 errorHandler(error: HttpErrorResponse){
   return throwError(error.message || "Server Error");
   }

@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'user', component: UsersComponent },
   { path: 'eventmanage', component: EventsComponent },
-  { path: 'eventdetail', component: EventdetailComponent },
+  { path: 'eventdetail/:id', component: EventdetailComponent },
   { path: 'userview', component: UserviewComponent },
   { path: 'eventreg', component: EventRegistrationComponent },
   { path: 'useradd', component: UsersAddComponent },

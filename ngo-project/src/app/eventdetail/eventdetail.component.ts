@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EventServeService } from '../event-serve.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-eventdetail',
   templateUrl: './eventdetail.component.html',
@@ -8,12 +8,13 @@ import { Router } from '@angular/router';
 })
 export class EventdetailComponent implements OnInit {
 
-  public events = [];
-  constructor(private _eventService: EventServeService, private router:Router) { }
+  public event = [];
+  constructor(private _eventService: EventServeService, private router:Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this._eventService.getEvents().subscribe(
-      (data) => this.events = data,
+    var id = parseInt(this.route.snapshot.paramMap.get('id'));
+    this._eventService.getEvent(id).subscribe(
+      (data) => this.event = data,
       () => console.log('the sequence completed!')
     );
   }

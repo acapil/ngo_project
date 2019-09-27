@@ -28,15 +28,8 @@ export class LoginComponent implements OnInit {
       data => {
         this._globals.key=data.key;
         this.http.get<any>('http://127.0.0.1:8000/user/get_id/'+this._globals.key+'/').subscribe(
-           (res) => { console.log('xxxx');
-                      console.log(res['admin']);
-                      console.log('xxxx');
-                      if(res['admin']==true){this.router.navigate(['/user'])}
+           (res) => { if(res['admin']==true){this.router.navigate(['/user'])}
                       else{this.router.navigate(['/eventlist'])}
-                      console.log(this._globals.key);
-            
-            
-            //  this.user= res, console.log('xxx', res)
                     },
           (err) => console.log(err)
         );
