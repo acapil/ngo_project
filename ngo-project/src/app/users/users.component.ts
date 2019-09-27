@@ -42,6 +42,9 @@ export class UsersComponent implements OnInit {
       (err) => console.log(err)
     );
   }
+  onEdit(users_id){
+    this.router.navigate(['/useredit/'+users_id])
+  }
   navuser(){
     this.router.navigate(['/user'])
   }

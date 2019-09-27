@@ -20,7 +20,4 @@ export class EventlistComponent implements OnInit {
   details(id){
     this.router.navigate(['/eventdetail/'+id]);
   }
-  selectImg(passevent){
-    this.router.navigate(['/eventdetail'])
-  }
 }

@@ -18,4 +18,7 @@ export class EventdetailComponent implements OnInit {
       () => console.log('the sequence completed!')
     );
   }
-}
+  reg(id){
+      this.router.navigate(['/eventreg/'+id]);
+    }
+  }

@@ -20,7 +20,8 @@ import { AppRoutingModule, routingComponents } from './app-component/app-routing
 import { EventdetailComponent } from './eventdetail/eventdetail.component';
 import { UsersAddComponent } from './useradd/useradd.component';
 import { EventnewComponent } from './eventnew/eventnew.component';
-import { EventlistComponent } from './eventlist/eventlist.component'; 
+import { EventlistComponent } from './eventlist/eventlist.component';
+import { UsereditComponent } from './useredit/useredit.component'; 
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { EventlistComponent } from './eventlist/eventlist.component';
     EventdetailComponent,
     UsersAddComponent,
     EventnewComponent,
-    EventlistComponent
+    EventlistComponent,
+    UsereditComponent
 
     
   ],

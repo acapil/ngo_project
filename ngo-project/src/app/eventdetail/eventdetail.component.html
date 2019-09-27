@@ -26,7 +26,6 @@
   <div class="row">
       <div class="col-md-12">
     <div> Event Registration Detail: {{event.name}} </div>
-    <div> {{id}}</div>
      </div>
   </div>
     <div class="row">
@@ -39,7 +38,7 @@
                     </thead>
                     <tbody>
                       <tr>
-                      <td>{{ev.event_name}}</td>
+                      <td>{{event.event_name}}</td>
                       </tr>    
                     </tbody>
                   </table>
@@ -51,7 +50,7 @@
                         </thead>
                         <tbody>
                           <tr>
-                          <td>{{ev.category}}</td>
+                          <td>{{event.category}}</td>
                           </tr>    
                         </tbody>
                       </table>
@@ -63,7 +62,7 @@
                             </thead>
                             <tbody>
                               <tr>
-                              <td>{{ev.location}}</td>
+                              <td>{{event.location}}</td>
                               </tr>    
                             </tbody>
                           </table>
@@ -75,7 +74,7 @@
                                 </thead>
                                 <tbody>
                                   <tr>
-                                  <td>{{ev.start_time}}</td>
+                                  <td>{{event.start_time}}</td>
                                   </tr>    
                                 </tbody>
                               </table>
@@ -87,7 +86,7 @@
                                     </thead>
                                     <tbody>
                                       <tr>
-                                      <td>{{ev.end_time}}</td>
+                                      <td>{{event.end_time}}</td>
                                       </tr>    
                                     </tbody>
                                   </table>
@@ -102,7 +101,7 @@
                         </thead>
                         <tbody>
                           <tr>
-                          <td>{{ev.description}}</td>
+                          <td>{{event.description}}</td>
                           </tr>    
                         </tbody>
                       </table>
@@ -114,19 +113,19 @@
                             </thead>
                             <tbody>
                               <tr>
-                              <td>{{ev.adult_price}}</td>
+                              <td>{{event.adult_price}}</td>
                               </tr>    
                             </tbody>
                           </table>
                           <table>
                                 <thead>
                                   <tr>
-                                    <th>Adult Ticket Prices</th>
+                                    <th>Kid Ticket Prices</th>
                                   </tr>
                                 </thead>
                                 <tbody>
                                   <tr>
-                                  <td>{{ev.child_price}}</td>
+                                  <td>{{event.kid_price}}</td>
                                   </tr>    
                                 </tbody>
                               </table>
@@ -140,7 +139,7 @@
                             </thead>
                             <tbody>
                               <tr>
-                              <td>{{ev.description}}</td>
+                              <td>{{event.description}}</td>
                               </tr>    
                             </tbody>
                           </table>
@@ -152,7 +151,7 @@
                                 </thead>
                                 <tbody>
                                   <tr>
-                                  <td>{{ev.adult_price}}</td>
+                                  <td>{{event.adult_price}}</td>
                                   </tr>    
                                 </tbody>
                               </table>
@@ -164,7 +163,7 @@
                                     </thead>
                                     <tbody>
                                       <tr>
-                                      <td> <img src="http://127.0.0.1:8000{{ev.image}}"> </td>
+                                      <td> <img src="http://127.0.0.1:8000{{event.image}}"> </td>
                                       </tr>    
                                     </tbody>
                                   </table>
@@ -172,7 +171,7 @@
                         
       </div>
       <div class="row">
-          Register
+         <button (click)="reg(event.id)">Register</button>
       </div>
   </div>
   

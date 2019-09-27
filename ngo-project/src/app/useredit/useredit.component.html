@@ -1,0 +1,57 @@
+
+<style>
+    .evenStyle {
+      background-color: red;
+      }
+  .oddStyle {
+      background-color: green;
+  }
+  .red {
+      color: red;
+  }
+  .size {
+      font-size: 20px;
+  }
+  </style>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-2">
+            NGO
+		</div>
+		<div class="col-md-9">
+		</div>
+		<div class="col-md-1">
+            Admin
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-2">
+			 <div>
+			<button type="button" class="btn btn-outline-primary" (click)="navuser()">
+			User Management
+            </button> 
+            </div>
+            <div>
+            <button type="button" class="btn btn-outline-primary" (click)="navevent()">
+            Event Management
+            </button> 
+            </div>
+            <div>
+            <button type="button" class="btn btn-outline-primary" (click)="navuserv()">
+            User View
+            </button> 
+            </div>
+		</div>
+		<div class="col-md-10">
+            <form [formGroup] = "uploadForm" (ngSubmit) = "onInsert1(uploadForm.value)">
+                <input name="first_name" formControlName="first_name" placeholder='First Name'>
+                <input name="last_name" formControlName="last_name" placeholder='Last Name'>
+                <input name="email" formControlName="email" placeholder='email'>
+                <input name="admin" formControlName="admin" placeholder='Enter true or false for admin'>
+                <button type="submit">Save</button>
+                <div></div>
+            </form>
+		</div>
+	</div>
+</div>
+ 

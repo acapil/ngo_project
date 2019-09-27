@@ -9,7 +9,7 @@ import { EventdetailComponent } from '../eventdetail/eventdetail.component';
 import { UsersAddComponent } from '../useradd/useradd.component';
 import { EventnewComponent } from '../eventnew/eventnew.component';
 import { EventlistComponent } from '../eventlist/eventlist.component';
-
+import { UsereditComponent } from '../useredit/useredit.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -18,10 +18,11 @@ const routes: Routes = [
   { path: 'eventmanage', component: EventsComponent },
   { path: 'eventdetail/:id', component: EventdetailComponent },
   { path: 'userview', component: UserviewComponent },
-  { path: 'eventreg', component: EventRegistrationComponent },
+  { path: 'eventreg/:id', component: EventRegistrationComponent },
   { path: 'useradd', component: UsersAddComponent },
   { path: 'eventadd', component: EventnewComponent },
   { path: 'eventlist', component: EventlistComponent },
+  { path: 'useredit/:id', component: UsereditComponent },
   
 ];
 
