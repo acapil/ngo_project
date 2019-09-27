@@ -54,6 +54,10 @@
                 <input name="kid_price" formControlName="kid_price" placeholder='Kid Price'>
                 <button type="submit" >Add Event</button>
             </form>
+            <form [formGroup]="imageForm">
+                <input type="file" name="file" (change)="onUpload($event)">
+            </form>
+            
 		</div>
 	</div>
 </div>

@@ -8,6 +8,7 @@ import { UserviewComponent } from '../userview/userview.component';
 import { EventdetailComponent } from '../eventdetail/eventdetail.component';
 import { UsersAddComponent } from '../useradd/useradd.component';
 import { EventnewComponent } from '../eventnew/eventnew.component';
+import { EventlistComponent } from '../eventlist/eventlist.component';
 
 
 const routes: Routes = [
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'eventreg', component: EventRegistrationComponent },
   { path: 'useradd', component: UsersAddComponent },
   { path: 'eventadd', component: EventnewComponent },
+  { path: 'eventlist', component: EventlistComponent },
   
 ];
 
@@ -29,4 +31,4 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 export const routingComponents = [LoginComponent, UsersComponent,EventsComponent,EventdetailComponent,
-  UserviewComponent,EventRegistrationComponent,UsersAddComponent,EventnewComponent]
+  UserviewComponent,EventRegistrationComponent,UsersAddComponent,EventnewComponent,EventlistComponent]

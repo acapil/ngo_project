@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
                       console.log(res['admin']);
                       console.log('xxxx');
                       if(res['admin']==true){this.router.navigate(['/user'])}
-                      else{this.router.navigate(['/userview'])}
+                      else{this.router.navigate(['/eventlist'])}
                       console.log(this._globals.key);
             
             
