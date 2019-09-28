@@ -19,8 +19,6 @@ export class UsereditComponent implements OnInit {
   ngOnInit() {
     this._userService.getUser(this.id).subscribe(
       (data) => {this.users = data,
-        console.log('the sequence completed!', this.users),
-        console.log('the sequence completed!', this.users['first_name']),
         this.uploadForm = this.fb.group({
           first_name: [this.users['first_name']],
           last_name: [this.users['last_name']],
