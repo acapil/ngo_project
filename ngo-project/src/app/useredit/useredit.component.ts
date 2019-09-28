@@ -17,16 +17,19 @@ export class UsereditComponent implements OnInit {
   constructor(private _userService: UserServeService, private router: Router, private http: HttpClient,private fb: FormBuilder,private route:ActivatedRoute) { }
 
   ngOnInit() {
-    this._userService.getUsers().subscribe(
-      (data) => this.users = data,
-      () => console.log('the sequence completed!')
+    this._userService.getUser(this.id).subscribe(
+      (data) => {this.users = data,
+        console.log('the sequence completed!', this.users),
+        console.log('the sequence completed!', this.users['first_name']),
+        this.uploadForm = this.fb.group({
+          first_name: [this.users['first_name']],
+          last_name: [this.users['last_name']],
+          email: [this.users['email']],
+          admin: [this.users['admin']]
+        })
+      },
+      (error) => console.log(error)
     );
-    this.uploadForm = this.fb.group({
-      first_name: [''],
-      last_name: [''],
-      email: [''],
-      admin: ['']
-    });
   }
   onInsert1(formData) {
     this.http.patch<any>('http://127.0.0.1:8000/user/change/'+this.id, formData).subscribe(
