@@ -10,13 +10,13 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./eventedit.component.css']
 })
 export class EventeditComponent implements OnInit {
-  private newImage = false;
+  public newImageCheck = false;
   public events = [];
   public event = [];
   public uploadForm: FormGroup;
   public imageForm: FormGroup;
   public newImageForm: FormGroup;
-  localURL: any[];
+  localImage: any[];
   constructor(private route: ActivatedRoute, private _userService: UserServeService, private router: Router, private http: HttpClient, private fb: FormBuilder) { }
   id = parseInt(this.route.snapshot.paramMap.get('id'));
 
@@ -38,8 +38,10 @@ export class EventeditComponent implements OnInit {
       },
       (error) => console.log(error)
     );
+
     this.newImageForm = this.fb.group({
       newimage: [],
+
     }),
 
 
@@ -74,9 +76,10 @@ export class EventeditComponent implements OnInit {
       this.newImageForm.get('newimage').setValue(file);
       var reader = new FileReader();
       reader.onload = (event: any) => {
-        this.localURL = event.target.result;
+        this.localImage = event.target.result;
       }
       reader.readAsDataURL(event.target.files[0])
+      this.newImageCheck = true
     }
   }
 
