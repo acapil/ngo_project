@@ -41,9 +41,9 @@
             </button> 
             </div>
 		</div>
-		<div class="col-md-10">
+		<div class="col-md-10" *ngIf="uploadForm">
             <form [formGroup] = "uploadForm" (ngSubmit) = "onInsert1(uploadForm.value)">
-                <input name="user" formControlName="user" placeholder='User'>
+                
                 <input name="event_name" formControlName="event_name" placeholder='Event Name'>
                 <select formControlName="category" placeholder='Category'>
                     <option value="">-- Select an option--</option>
@@ -59,11 +59,14 @@
                 <input name="description" formControlName="description" placeholder='Description'>
                 <input name="adult_price" formControlName="adult_price" placeholder='Adult Price'>
                 <input name="kid_price" formControlName="kid_price" placeholder='Kid Price'>
+                    <form [formGroup]="newImageForm" >
+                        <img src="http://127.0.0.1:8000{{event.image}}">
+                        <input type="file" (change)="onUpload($event)">
+                    </form>
                 <button type="submit" >Edit Event</button>
+
             </form>
-            <form [formGroup]="imageForm">
-                <input type="file" name="file" (change)="onUpload($event)">
-            </form>
+
             
 		</div>
 	</div>

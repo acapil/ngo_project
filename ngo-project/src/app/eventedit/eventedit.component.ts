@@ -11,39 +11,54 @@ import { Router,ActivatedRoute} from '@angular/router';
 })
 export class EventeditComponent implements OnInit {
   public events = [];
+  public event = [];
   public uploadForm: FormGroup;
   public imageForm: FormGroup;
+  public newImageForm: FormGroup;
   constructor(private route:ActivatedRoute, private _userService: UserServeService, private router: Router, private http: HttpClient,private fb: FormBuilder) { }
   id = parseInt(this.route.snapshot.paramMap.get('id'));
 
   ngOnInit() {
+    this.http.get<any>('http://127.0.0.1:8000/event/'+this.id).subscribe(
+      (data) => { 
+        this.event = data,
+        console.log('zzz',this.event['image'])
+        this.uploadForm = this.fb.group({
+          event_name: [this.event['event_name']],
+          category: [this.event['category']],
+          location: [this.event['location']],
+          start_time: [this.event['start_time']],
+          end_time: [this.event['end_time']],
+          description: [this.event['description']],
+          adult_price: [this.event['adult_price']],
+          kid_price: [this.event['kid_price']],
+          image: [this.event['image']],
+        })
+        // console.log('xxx',this.event['image']),
+        // this.imageForm = this.fb.group({
+        //   image: [this.event['image']],
+        // }),
+        // console.log('yyy',this.event['image'])
+      },
+      (error) => console.log(error)
+    );
+    this.newImageForm = this.fb.group({
+      newimage: [],
+    }),
+
+
     this._userService.getUsers().subscribe(
       (data) => this.events = data,
       () => console.log('the sequence completed!')
     );
-    this.imageForm = this.fb.group({
-      file: ['']
-    });
-    this.uploadForm = this.fb.group({
-      user: [''],
-      event_name: [''],
-      category: [''],
-      location: [''],
-      start_time: [''],
-      end_time: [''],
-      description: [''],
-      image:[''],
-      adult_price: [''],
-      kid_price: [''],
-    });
   }
   onInsert1(formData) {
     const formData1 = new FormData();
-    formData1.append('image', this.imageForm.get('file').value);
-    formData1.append('user', formData.user);
+    formData1.append('image', this.newImageForm.get('newimage').value);
+    formData1.append('user', this.event['user']);
     formData1.append('event_name', formData.event_name);
     formData1.append('category', formData.category);
-    formData1.append('location', formData.locationr);
+    formData1.append('location', formData.location);
     formData1.append('start_time', formData.start_time);
     formData1.append('end_time', formData.end_time);
     formData1.append('description', formData.description);
@@ -52,7 +67,7 @@ export class EventeditComponent implements OnInit {
     console.log('yyyyy',formData1.get('image'));
     this.http.patch<any>('http://127.0.0.1:8000/event/edit/'+this.id, formData1).subscribe(
       (res) => {console.log(res);
-                this.router.navigate(['/eventmanage'])
+        this.router.navigate(['/eventmanage'])
       },
       (err) => console.log(err)
     );
@@ -60,8 +75,8 @@ export class EventeditComponent implements OnInit {
   onUpload(event){
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
-      this.imageForm.get('file').setValue(file);
-      console.log('xxxx'+this.imageForm.get('file'))
+      this.newImageForm.get('newimage').setValue(file);
+      console.log('xxxx1111'+this.newImageForm.get('newimage'))
     }
   }
   navuser(){
