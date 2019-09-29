@@ -26,6 +26,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
+import { UsersAddComponent } from './useradd/useradd.component';
+import { EventnewComponent } from './eventnew/eventnew.component';
+import { EventlistComponent } from './eventlist/eventlist.component';
+import { UsereditComponent } from './useredit/useredit.component';
+import { EventeditComponent } from './eventedit/eventedit.component'; 
 
 @NgModule({
   declarations: [
@@ -36,7 +41,12 @@ import { MatCardModule } from '@angular/material/card';
     EventRegistrationComponent,
     UserviewComponent,
     routingComponents,
-    EventdetailComponent
+    EventdetailComponent,
+    UsersAddComponent,
+    EventnewComponent,
+    EventlistComponent,
+    UsereditComponent,
+    EventeditComponent
   ],
   imports: [
     BrowserModule,

@@ -14,6 +14,9 @@ export class UserServeService {
 getUsers(): Observable<Users[]>{
   return this.http.get<Users[]>(this._url);
 }
+getUser(user_id): Observable<Users[]>{
+  return this.http.get<Users[]>(this._url + user_id);
+}
 onLogin(userData): Observable<any>{
   return this.http.post("http://127.0.0.1:8000/user/auth/login/",userData);
 }

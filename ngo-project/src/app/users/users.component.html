@@ -20,18 +20,11 @@
                           <td>{{us.password }}</td>
                           <td>{{us.admin }}</td>
                           <td><button type="button" class="btn btn-primary"  (click)="onDelete(us.id)">Delete</button>
-                            <button type="button" class="btn btn-primary" (click)="helpWindow($event)">Edit</button></td>
+                            <button type="button" class="btn btn-primary" (click)="onEdit(us.id)">Edit</button></td>
                            
                           </tr>   
                         </tbody>
                         <div>
-                          <form [formGroup] = "uploadForm" (ngSubmit) = "onInsert(uploadForm.value)">
-                                  <input name="username" formControlName="username" placeholder='User'>
-                                  <input name="password1" formControlName="password1" placeholder='Password'>
-                                  <input name="password2" formControlName="password2" placeholder='Repeat Password'>
-                                  <input name="email" formControlName="email" placeholder='Email'>
-                                  <button type="submit">Save</button>
-                                  <div></div>
-                          </form>
+                          <button type="button" (click)="addUser()">Add User</button>
                       </div>
                       </table>
