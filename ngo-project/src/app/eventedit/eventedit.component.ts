@@ -10,7 +10,6 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./eventedit.component.css']
 })
 export class EventeditComponent implements OnInit {
-  public newImageCheck = false;
   public events = [];
   public event = [];
   public uploadForm: FormGroup;
@@ -79,7 +78,6 @@ export class EventeditComponent implements OnInit {
         this.localImage = event.target.result;
       }
       reader.readAsDataURL(event.target.files[0])
-      this.newImageCheck = true
     }
   }
 

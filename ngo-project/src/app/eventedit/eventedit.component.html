@@ -64,7 +64,7 @@
                 <input name="kid_price" formControlName="kid_price" placeholder='Kid Price'>
                 <form [formGroup]="newImageForm">
                     <div>
-                        <img src="http://127.0.0.1:8000{{event.image}}" *ngIf=!newImageCheck>
+                        <img src="http://127.0.0.1:8000{{event.image}}" *ngIf=!localImage>
                         <img [src]="localImage" *ngIf="localImage">
                     </div>
                     <input type="file" (change)="onUpload($event)" >
