@@ -51,8 +51,10 @@
         </div> -->
         <div class="col-md-10">
             <form [formGroup]="uploadForm" (ngSubmit)="onInsert1(uploadForm.value)" *ngIf="uploadForm">
-                <input name="event_name" formControlName="event_name" placeholder='Event Name'>
-                <select formControlName="category" placeholder='Category'>
+                <label for="event_name">Event Name:</label>
+                <input name="event_name" formControlName="event_name" class="form-control" placeholder='Event Name'>
+                <label for="category">Category:</label>
+                <select formControlName="category" class="form-control" placeholder='Category'>
                     <option value="">-- Select an option--</option>
                     <option value="other">Other</option>
                     <option value="social">Social</option>
@@ -60,12 +62,18 @@
                     <option value="religious">Religious</option>
                     <option value="spiritual">Spiritual</option>
                 </select>
-                <input name="location" formControlName="location" placeholder='Location'>
-                <input name="start_time" formControlName="start_time" placeholder='Start Time'>
-                <input name="end_time" formControlName="end_time" placeholder='End Time'>
-                <input name="description" formControlName="description" placeholder='Description'>
-                <input name="adult_price" formControlName="adult_price" placeholder='Adult Price'>
-                <input name="kid_price" formControlName="kid_price" placeholder='Kid Price'>
+                <label for="location">Location:</label>
+                <input name="location" formControlName="location" class="form-control" placeholder='Location'>
+                <label for="start_time">Start Time:</label>
+                <input name="start_time" formControlName="start_time" class="form-control"  placeholder='Start Time'>
+                <label for="end_time">End Time:</label>
+                <input name="end_time" formControlName="end_time" class="form-control"  placeholder='End Time'>
+                <label for="description">Decription:</label>
+                <input name="description" formControlName="description" class="form-control" placeholder='Description'>
+                <label for="adult_price">Adult Price:</label>
+                <input name="adult_price" type="number" step=".01" formControlName="adult_price" class="form-control" placeholder='Adult Price'>
+                <label for="kid_price">Kid Price:</label>
+                <input name="kid_price" type="number" step=".01" formControlName="kid_price" class="form-control" placeholder='Kid Price'>
                 <button type="submit">Add Event</button>
             </form>
             <form [formGroup]="imageForm">

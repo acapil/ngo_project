@@ -15,7 +15,7 @@
                 </select>
 
                 <label for="location">Location:</label>
-                <input name="location" formControlName="location" class="form-control" placeholder='Location'>
+                <input name="location"  formControlName="location" class="form-control" placeholder='Location'>
 
                 <label for="start_time">Start Time:</label>
                 <input name="start_time" formControlName="start_time" class="form-control" placeholder='Start Time'>
@@ -27,10 +27,10 @@
                 <input name="description" formControlName="description" class="form-control" placeholder='Description'>
 
                 <label for="adult_price">Adult Price:</label>
-                <input name="adult_price" input type="number" min="0" max="1000" formControlName="adult_price" placeholder='Adult Price'>
+                <input name="adult_price" input type="number" min="0" max="1000" step=".01" formControlName="adult_price" placeholder='Adult Price'>
 
                 <label for="kid_price">Child Price:</label>
-                <input name="kid_price" input type="number" min="0" max="1000" formControlName="kid_price" placeholder='Kid Price'>
+                <input name="kid_price" input type="number" min="0" max="1000" step=".01" formControlName="kid_price" placeholder='Kid Price'>
                 <form [formGroup]="newImageForm">
                     <div>
                         <img src="http://127.0.0.1:8000{{event.image}}" *ngIf=!localImage>
