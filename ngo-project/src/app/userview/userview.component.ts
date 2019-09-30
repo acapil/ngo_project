@@ -25,5 +25,8 @@ export class UserviewComponent implements OnInit {
   navuserv(){
     this.router.navigate(['/userview'])
   }
+  navlogout() {
+    this.router.navigate(['/login'])
+  }
 
 }

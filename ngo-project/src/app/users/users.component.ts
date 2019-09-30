@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { UserServeService } from '../user-serve.service';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Globals } from '../globals'
+import { Options } from 'selenium-webdriver/chrome';
 
 @Component({
   selector: 'app-users',
@@ -72,6 +73,12 @@ export class UsersComponent implements OnInit {
   }
   addUser() {
     this.router.navigate(['/useradd'])
+  }
+  navlogout() {
+    var header = new HttpHeaders().set('Authorization', 'Token ' + this._globals.key)
+    console.log('nink',this._globals.key)
+    this.http.post<any>('http://127.0.0.1:8000/user/auth/logout/', null, {headers: header})
+    this.router.navigate(['/login'])
   }
 }
 

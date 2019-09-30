@@ -41,6 +41,11 @@
                     User View
                 </button> 
             </div>
+            <div>
+        <button type="button" class="btn btn-outline-primary" (click)="navlogout()">
+          Logout
+        </button>
+      </div>
 		</div> -->
 		<div class="col-md-10" *ngIf="uploadForm">
             <form [formGroup] = "uploadForm" (ngSubmit) = "onInsert1(uploadForm.value)">

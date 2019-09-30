@@ -6,7 +6,7 @@
         <input type="text" class="form-control" formControlName="username" id="uname" required name="username" placeholder='Username'>
         </div>
         
-    <div class="form-group">
+    <!-- <div class="form-group">
         <label for="name">First Name</label>
         <input type="text" class="form-control" formControlName="fname" id="fname" required name="fname" placeholder='First Name'>
     </div>
@@ -14,7 +14,7 @@
     <div class="form-group">
         <label for="lname">Last Name</label>
         <input type="text" class="form-control" formControlName="lname" id="lname" required name="lname" placeholder='Last Name'>
-    </div>
+    </div> -->
 
     <div class="form-group">
         <label for="password">Input Password</label>
@@ -64,6 +64,11 @@
             User View
         </button>
     </div>
+    <div>
+        <button type="button" class="btn btn-outline-primary" (click)="navlogout()">
+          Logout
+        </button>
+      </div>
 </div> -->
 <!-- <div class="col-md-10">
     <form [formGroup]="uploadForm" (ngSubmit)="onInsert1(uploadForm.value)">

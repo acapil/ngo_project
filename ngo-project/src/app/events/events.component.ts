@@ -63,5 +63,8 @@ export class EventsComponent implements OnInit {
   addEvent(){
     this.router.navigate(['/eventadd'])
   }
+  navlogout() {
+    this.router.navigate(['/login'])
+  }
 
 }
