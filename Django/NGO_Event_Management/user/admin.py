@@ -37,3 +37,5 @@ class UserAdmin(UserAdmin):
     model = User
     list_display = ['email', 'username', 'admin']
 
+admin.site.register(User, UserAdmin)
+

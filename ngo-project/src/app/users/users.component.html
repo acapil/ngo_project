@@ -7,6 +7,8 @@
       <th>Last Name</th>
       <th>Email</th>
       <th>Role</th>
+      <th>Edit</th>
+      <th>Delete</th>
     </tr>
   </thead>
   <tbody>
@@ -18,8 +20,8 @@
         <td>{{us.last_name|titlecase}}</td>
         <td>{{us.email}}</td>
         <td>{{us.admin }}</td>
-        <td><button type="button" class="btn btn-primary" (click)="onDelete(us.id)">Delete</button>
-          <button type="button" class="btn btn-primary" (click)="onEdit(us.id)">Edit</button></td>
+        <td><button type="button" class="btn btn-primary" (click)="onEdit(us.id)">Edit</button></td>
+        <td><button type="button" class="btn btn-danger" (click)="onDelete(us.id)">X</button></td>
       </tr>
       <button type="button" (click)="addUser()">Add User</button>
     </div>
@@ -31,8 +33,8 @@
         <td>{{users.last_name|titlecase}}</td>
         <td>{{users.email}}</td>
         <td>{{users.admin }}</td>
-        <td><button type="button" class="btn btn-primary" (click)="onDelete(us.id)">Delete</button>
-          <button type="button" class="btn btn-primary" (click)="onEdit(users.id)">Edit</button></td>
+        <td><button type="button" class="btn btn-primary" (click)="onEdit(users.id)">Edit</button></td>
+        <td><button type="button" class="btn btn-danger" (click)="onDelete(users.id)">X</button></td>
       </tr>
     </ng-template>
   </tbody>
