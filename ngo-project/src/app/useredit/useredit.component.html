@@ -15,17 +15,17 @@
   </style>
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-md-2">
+		<!-- <div class="col-md-2">
             NGO
 		</div>
 		<div class="col-md-9">
 		</div>
 		<div class="col-md-1">
             Admin
-		</div>
+		</div> -->
 	</div>
 	<div class="row">
-		<div class="col-md-2">
+		<!-- <div class="col-md-2">
 			 <div>
                 <button type="button" class="btn btn-outline-primary" (click)="navuser()">
                     User Management
@@ -41,7 +41,7 @@
                     User View
                 </button> 
             </div>
-		</div>
+		</div> -->
 		<div class="col-md-10" *ngIf="uploadForm">
             <form [formGroup] = "uploadForm" (ngSubmit) = "onInsert1(uploadForm.value)">
                 <input name="first_name" formControlName="first_name" placeholder='First Name'>

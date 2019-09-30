@@ -17,57 +17,59 @@
 
 <style>
   .evenStyle {
-    background-color: red;
-    }
-.oddStyle {
-    background-color: green;
-}
-.red {
+    background-color: gray;
+  }
+
+  .oddStyle {
+    background-color: gray;
+  }
+
+  /* .red {
     color: red;
-}
-.size {
+  } */
+
+  .size {
     font-size: 20px;
-}
+  }
 </style>
 <div class="container-fluid">
-<div class="row">
-  <div class="col-md-2">
-          NGO
-  </div>
-  <div class="col-md-9">
-  </div>
-  <div class="col-md-1">
-          Admin
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-2">
-     <div>
-    <button type="button" class="btn btn-outline-primary" (click)="navuser()">
-    User Management
-          </button> 
-          </div>
-          <div>
-          <button type="button" class="btn btn-outline-primary" (click)="navevent()">
+  <!-- <div class="row">
+    <div class="col-md-2">
+      NGO
+    </div>
+    <div class="col-md-9">
+    </div>
+    <div class="col-md-1">
+      Admin
+    </div>
+  </div> -->
+  <!-- <div class="row"> -->
+    <!-- <div class="col-md-2">
+      <div>
+        <button type="button" class="btn btn-outline-primary" (click)="navuser()">
+          User Management
+        </button>
+      </div>
+      <div>
+        <button type="button" class="btn btn-outline-primary" (click)="navevent()">
           Event Management
-          </button> 
-          </div>
-          <div>
-          <button type="button" class="btn btn-outline-primary" (click)="navuserv()">
+        </button>
+      </div>
+      <div>
+        <button type="button" class="btn btn-outline-primary" (click)="navuserv()">
           User View
-          </button> 
-          </div>
-  </div>
-  <div class="col-md-10">
-    <table class="table table-bordered">
-      <tbody>
-        <tr *ngFor="let ev of events let o = odd; let e = even"
-        [ngClass] = "{oddStyle: o, evenStyle: e}">
-        <td><button> <img src="http://127.0.0.1:8000{{ev.image}}"> </button></td>
-        <td>{{ev.location}}</td>
-        </tr>    
-      </tbody>
-    </table>
-  </div>
-</div>
+        </button>
+      </div>
+    </div> -->
+    <div class="col-md-10">
+      <table class="table table-bordered">
+        <tbody>
+          <tr *ngFor="let ev of events let o = odd; let e = even" [ngClass]="{oddStyle: o, evenStyle: e}">
+            <td><button> <img src="http://127.0.0.1:8000{{ev.image}}"> </button></td>
+            
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  <!-- </div> -->
 </div>

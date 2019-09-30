@@ -1,49 +1,52 @@
 <style>
     .evenStyle {
-      background-color: red;
-      }
-  .oddStyle {
-      background-color: green;
-  }
-  .red {
-      color: red;
-  }
-  .size {
-      font-size: 20px;
-  }
-  </style>
+        background-color: red;
+    }
+
+    .oddStyle {
+        background-color: green;
+    }
+
+    .red {
+        color: red;
+    }
+
+    .size {
+        font-size: 20px;
+    }
+</style>
 <div class="container-fluid">
-	<div class="row">
-		<div class="col-md-2">
+    <!-- <div class="row">
+        <div class="col-md-2">
             NGO
-		</div>
-		<div class="col-md-9">
-		</div>
-		<div class="col-md-1">
+        </div>
+        <div class="col-md-9">
+        </div>
+        <div class="col-md-1">
             Admin
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-2">
-			 <div>
-			<button type="button" class="btn btn-outline-primary" (click)="navuser()">
-			User Management
-            </button> 
+        </div>
+    </div> -->
+    <!-- <div class="row"> -->
+        <!-- <div class="col-md-2">
+            <div>
+                <button type="button" class="btn btn-outline-primary" (click)="navuser()">
+                    User Management
+                </button>
             </div>
             <div>
-            <button type="button" class="btn btn-outline-primary" (click)="navevent()">
-            Event Management
-            </button> 
+                <button type="button" class="btn btn-outline-primary" (click)="navevent()">
+                    Event Management
+                </button>
             </div>
             <div>
-            <button type="button" class="btn btn-outline-primary" (click)="navuserv()">
-            User View
-            </button> 
+                <button type="button" class="btn btn-outline-primary" (click)="navuserv()">
+                    User View
+                </button>
             </div>
-		</div>
-		<div class="col-md-10" *ngIf="uploadForm">
-            <form [formGroup] = "uploadForm" (ngSubmit) = "onInsert1(uploadForm.value)">
-                
+        </div> -->
+        <div class="col-md-10" *ngIf="uploadForm">
+            <form [formGroup]="uploadForm" (ngSubmit)="onInsert1(uploadForm.value)">
+
                 <input name="event_name" formControlName="event_name" placeholder='Event Name'>
                 <select formControlName="category" placeholder='Category'>
                     <option value="">-- Select an option--</option>
@@ -59,15 +62,15 @@
                 <input name="description" formControlName="description" placeholder='Description'>
                 <input name="adult_price" formControlName="adult_price" placeholder='Adult Price'>
                 <input name="kid_price" formControlName="kid_price" placeholder='Kid Price'>
-                    <form [formGroup]="newImageForm" >
-                        <img src="http://127.0.0.1:8000{{event.image}}">
-                        <input type="file" (change)="onUpload($event)">
-                    </form>
-                <button type="submit" >Edit Event</button>
-
+                <form [formGroup]="newImageForm">
+                    <div>
+                        <img src="http://127.0.0.1:8000{{event.image}}" *ngIf=!localImage>
+                        <img [src]="localImage" *ngIf="localImage">
+                    </div>
+                    <input type="file" (change)="onUpload($event)" >
+                </form>
+                <button type="submit">Edit Event</button>
             </form>
-
-            
-		</div>
-	</div>
+        </div>
+    <!-- </div> -->
 </div>
