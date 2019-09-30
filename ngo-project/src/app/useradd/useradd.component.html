@@ -1,57 +1,78 @@
-<style>
-    .evenStyle {
-        background-color: red;
-    }
+<div class="container">
+    <h1>Edit a user</h1>
+    <form (ngSubmit)="onInsert1(uploadForm.value)" [formGroup] = "uploadForm">
+        <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" formControlName="username" id="uname" required name="username" placeholder='Username'>
+        </div>
+        
+    <div class="form-group">
+        <label for="name">First Name</label>
+        <input type="text" class="form-control" formControlName="fname" id="fname" required name="fname" placeholder='First Name'>
+    </div>
 
-    .oddStyle {
-        background-color: green;
-    }
+    <div class="form-group">
+        <label for="lname">Last Name</label>
+        <input type="text" class="form-control" formControlName="lname" id="lname" required name="lname" placeholder='Last Name'>
+    </div>
 
-    .red {
-        color: red;
-    }
+    <div class="form-group">
+        <label for="password">Input Password</label>
+        <input type="password" class="form-control" formControlName="password1" id="pw" required name="password1" placeholder='8+ characters'>
+    </div>
 
-    .size {
-        font-size: 20px;
-    }
-</style>
+    <div class="form-group">
+        <label for="password2">Repeat Password</label>
+        <input type="password" class="form-control" id="pw" formControlName="password2" required name="password2" placeholder='8+ characters'>
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" formControlName="email" id="email" required name="email" placeholder='Email: abc@abc.com'>
+    </div>
+
+    {{submitted}}
+    <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+</div>
+
 <div class="container-fluid">
-    <!-- <div class="row">
-        <div class="col-md-2">
-            NGO
-        </div>
-        <div class="col-md-9">
-        </div>
-        <div class="col-md-1">
-            Admin
-        </div>
-    </div> -->
-    <!-- <div class="row"> -->
-        <!-- <div class="col-md-2">
-            <div>
-                <button type="button" class="btn btn-outline-primary" (click)="navuser()">
-                    User Management
-                </button>
-            </div>
-            <div>
-                <button type="button" class="btn btn-outline-primary" (click)="navevent()">
-                    Event Management
-                </button>
-            </div>
-            <div>
-                <button type="button" class="btn btn-outline-primary" (click)="navuserv()">
-                    User View
-                </button>
-            </div>
-        </div> -->
-        <div class="col-md-10">
-            <form [formGroup]="uploadForm" (ngSubmit)="onInsert1(uploadForm.value)">
-                <input name="username" formControlName="username" placeholder='User'>
-                <input type="password" name="password1" formControlName="password1" placeholder='Password'>
-                <input type="password" name="password2" formControlName="password2" placeholder='Repeat Password'>
-                <input name="email" formControlName="email" placeholder='Email'>
-                <button type="submit">Save</button>
-            </form>
-        </div>
-    
+<!-- <div class="row">
+<div class="col-md-2">
+    NGO
+</div>
+<div class="col-md-9">
+</div>
+<div class="col-md-1">
+    Admin
+</div>
+</div> -->
+<!-- <div class="row"> -->
+<!-- <div class="col-md-2">
+    <div>
+        <button type="button" class="btn btn-outline-primary" (click)="navuser()">
+            User Management
+        </button>
+    </div>
+    <div>
+        <button type="button" class="btn btn-outline-primary" (click)="navevent()">
+            Event Management
+        </button>
+    </div>
+    <div>
+        <button type="button" class="btn btn-outline-primary" (click)="navuserv()">
+            User View
+        </button>
+    </div>
+</div> -->
+<!-- <div class="col-md-10">
+    <form [formGroup]="uploadForm" (ngSubmit)="onInsert1(uploadForm.value)">
+        <input name="username" formControlName="username" placeholder='User'>
+        <input type="password" name="password1" formControlName="password1" placeholder='Password'>
+        <input type="password" name="password2" formControlName="password2" placeholder='Repeat Password'>
+        <input name="email" formControlName="email" '>
+        <button type="submit">Save</button>
+    </form>
+</div> -->
+
 </div>
