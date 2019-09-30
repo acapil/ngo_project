@@ -7,7 +7,8 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
 from rest_framework.authtoken.models import Token
-
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.views import APIView
 # Create your views here.
 
 class EmployeeViewSet(viewsets.ModelViewSet):
@@ -15,25 +16,49 @@ class EmployeeViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
 
 
+class TestAuthView(APIView):
+    permission_classes = (IsAuthenticated,)
+
+
+def check_permission(token):
+    authenticate = False
+    admin = False
+    if token in list(Token.objects.values_list('key',flat=True)):
+        authenticate = True
+        token_object = Token.objects.get(key=token)
+        admin = getattr(User.objects.get(id=token_object.user_id), 'admin')
+    return {'authenticate': authenticate, 'admin': admin}
+
+
 @api_view(['GET'])
 def get_users(request):
     if request.method == 'GET':
-        users = User.objects.all()
-        serializer = UserSerializer(users, many=True)
-        return Response(serializer.data)
+        # print(request.META) # testing only
+        token = request.META.get('HTTP_AUTHORIZATION').split()[1]
+        permission = check_permission(token)
+        if permission.get('authenticate') and permission.get('admin'):
+            users = User.objects.all()
+            serializer = UserSerializer(users, many=True)
+            return Response(serializer.data)
+        else: Response(status=status.HTTP_400_BAD_REQUEST)
     else:
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET'])
 def get_user(request, user_id):
-    try:
-        user = User.objects.get(id=user_id)
-    except User.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
     if request.method == 'GET':
-        serializer = UserSerializer(user)
-        return Response(serializer.data)
+        token = request.META.get('HTTP_AUTHORIZATION').split()[1]
+        permission = check_permission(token)
+        if permission.get('authenticate') and permission.get('admin'):
+            try:
+                user=User.objects.get(id=user_id)
+            except User.DoesNotExist:
+                return Response(status=status.HTTP_404_NOT_FOUND)
+            serializer = UserSerializer(user)
+            return Response(serializer.data)
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
     else:
         return Response(status=status.HTTP_400_BAD_REQUEST)
 

@@ -3,6 +3,7 @@ import { UserServeService } from '../user-serve.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import {Globals} from '../globals'
 
 @Component({
   selector: 'app-users',
@@ -12,12 +13,13 @@ import { Router } from '@angular/router';
 export class UsersComponent implements OnInit {
   public users = [];
   public uploadForm: FormGroup;
-  constructor(private _userService: UserServeService, private router: Router, private http: HttpClient,private fb: FormBuilder) { }
+  constructor(private _userService: UserServeService, private _globals: Globals, private router: Router, private http: HttpClient,private fb: FormBuilder) { }
 
   ngOnInit() {
+    console.log(this._globals.key)
     this._userService.getUsers().subscribe(
       (data) => this.users = data,
-      () => console.log('the sequence completed!')
+      (err) => console.log(err)
     );
     this.uploadForm = this.fb.group({
       username: [''],
@@ -43,7 +45,7 @@ export class UsersComponent implements OnInit {
     );
   }
   onEdit(users_id){
-    this.router.navigate(['/useredit/'+users_id])
+    this.router.navigate(['/useredit/' + users_id])
   }
   navuser(){
     this.router.navigate(['/user'])
