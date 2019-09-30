@@ -17,8 +17,6 @@ export class UsersComponent implements OnInit {
   constructor(private _userService: UserServeService, private _globals: Globals, private router: Router, private http: HttpClient, private fb: FormBuilder) { }
 
   ngOnInit() {
-    // if(this._globals.admin){
-    // var adminCheck = this._globals
     this._userService.getUsers().subscribe(
       (data) => {
         this.users = data, 
@@ -27,13 +25,6 @@ export class UsersComponent implements OnInit {
       (err) => {console.log(err),
                 console.log('err',this._globals.key)}
     );
-   // }
-    // else{
-    //   this._userService.getUser(this._globals.usid).subscribe(
-    //     (data) => this.users = data,
-    //     (err) => console.log(err)
-    //   );
-    // }
     this.uploadForm = this.fb.group({
       username: [''],
       password1: [''],
