@@ -22,8 +22,7 @@ export class UsersComponent implements OnInit {
     this._userService.getUsers().subscribe(
       (data) => {
         this.users = data, 
-        this.adminCheck = this._globals.admin,
-        console.log('goo',this._globals.key, this.adminCheck)
+        this.adminCheck = this._globals.admin
       },
       (err) => {console.log(err),
                 console.log('err',this._globals.key)}
