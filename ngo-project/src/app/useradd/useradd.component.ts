@@ -23,8 +23,6 @@ export class UsersAddComponent implements OnInit {
     );
     this.uploadForm = this.fb.group({
       username: [''],
-      fname: [''],
-      lname: [''],
       password1: [''],
       password2: [''],
       email: ['']

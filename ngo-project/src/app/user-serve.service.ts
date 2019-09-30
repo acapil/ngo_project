@@ -14,7 +14,6 @@ export class UserServeService {
 
   getUsers(): Observable<Users[]> {
     var header = new HttpHeaders().set('Authorization', 'Token ' + this._globals.key)
-    console.log('xxx',this._globals.key)
     return this.http.get<Users[]>(this._url, { headers: header });
   }
   getUser(user_id): Observable<Users[]> {

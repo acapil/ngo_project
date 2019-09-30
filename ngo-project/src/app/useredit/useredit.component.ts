@@ -18,7 +18,8 @@ export class UsereditComponent implements OnInit {
 
   ngOnInit() {
     this._userService.getUser(this.id).subscribe(
-      (data) => {this.users = data,
+      (data) => {
+        this.users = data,
         this.uploadForm = this.fb.group({
           first_name: [this.users['first_name']],
           last_name: [this.users['last_name']],
@@ -26,7 +27,7 @@ export class UsereditComponent implements OnInit {
           admin: [this.users['admin']]
         })
       },
-      (error) => console.log(error)
+      (error) => {console.log(error)}
     );
   }
   onInsert1(formData) {

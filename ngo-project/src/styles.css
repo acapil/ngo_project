@@ -1,7 +1,7 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-image: 'src/assets/wavebg.png'; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .ng-valid[required], .ng-valid.required  {
     border-left: 5px solid #42A948; /* green */
@@ -12,11 +12,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-
   }
 
 .evenStyle {
-    background-color: #B0BEC5;
+    background-color: lightblue;
     }
 .oddStyle {
-    background-color: lavender;
+    background-color: lightgray;
 }
+
+
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

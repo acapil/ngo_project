@@ -23,8 +23,6 @@
       <th>Adult Price</th>
       <th>Child Price</th>
       <th>Image</th>
-      <th>Edit</th>
-      <th>Delete</th>
     </tr>
   </thead>
   <tbody>
@@ -38,8 +36,8 @@
       <td>{{ev.adult_price}}</td>
       <td>{{ev.kid_price}}</td>
       <td><img src="http://127.0.0.1:8000{{ev.image}}"></td>
-      <td><button type="button" class="btn btn-primary" (click)="onEdit(ev.id)">Edit</button></td>
-      <td><button type="button" class="btn btn-danger" (click)="onDelete(ev.id)">X</button></td>
+      <td><button type="button" class="btn btn-primary" (click)="onDelete(ev.id)">Delete</button>
+        <button type="button" class="btn btn-primary" (click)="onEdit(ev.id)">Edit</button></td>
     </tr>
   </tbody>
   <div>

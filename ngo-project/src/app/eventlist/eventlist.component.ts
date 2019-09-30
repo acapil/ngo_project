@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EventServeService } from '../event-serve.service';
 import { Router } from '@angular/router';
-import { MatCardModule } from '@angular/material/card';
-
 @Component({
   selector: 'app-eventlist',
   templateUrl: './eventlist.component.html',
