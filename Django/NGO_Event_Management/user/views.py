@@ -57,7 +57,7 @@ def get_user(request, user_id):
     if request.method == 'GET':
         token = request.META.get('HTTP_AUTHORIZATION').split()[1]
         permission = check_permission(token)
-        if permission.get('authenticate'):
+        if permission.get('authenticate') and permission.get('admin'):
             try:
                 user=User.objects.get(id=user_id)
             except User.DoesNotExist:
