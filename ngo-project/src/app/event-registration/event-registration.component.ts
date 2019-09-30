@@ -41,7 +41,7 @@ export class EventRegistrationComponent implements OnInit {
     formData.event = this.id
     console.log('aaaa',this.usid)
     this.http.post<any>('http://127.0.0.1:8000/event_registration/new/', formData).subscribe(
-      (res) => {console.log(res);
+      (res) => {console.log(res['total_price'])
                 this.router.navigate(['/eventlist'])
       },
       (err) => console.log(err)
