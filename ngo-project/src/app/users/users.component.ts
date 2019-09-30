@@ -3,6 +3,7 @@ import { UserServeService } from '../user-serve.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Globals } from '../globals'
 
 @Component({
   selector: 'app-users',
@@ -12,12 +13,12 @@ import { Router } from '@angular/router';
 export class UsersComponent implements OnInit {
   public users = [];
   public uploadForm: FormGroup;
-  constructor(private _userService: UserServeService, private router: Router, private http: HttpClient,private fb: FormBuilder) { }
+  constructor(private _userService: UserServeService, private _globals: Globals, private router: Router, private http: HttpClient, private fb: FormBuilder) { }
 
   ngOnInit() {
     this._userService.getUsers().subscribe(
       (data) => this.users = data,
-      () => console.log('the sequence completed!')
+      (err) => console.log(err)
     );
     this.uploadForm = this.fb.group({
       username: [''],
@@ -28,12 +29,12 @@ export class UsersComponent implements OnInit {
   }
   onDelete(users_id) {
     this.http.delete('http://127.0.0.1:8000/user/delete/' + users_id).subscribe(
-      (res) =>{ console.log(res);
-                location.reload()
+      (res) => {
+        console.log(res);
+        location.reload()
       },
       (err) => alert(err)
-      
-      );
+    );
     return 'success'
   }
   onInsert(formData) {
@@ -42,20 +43,20 @@ export class UsersComponent implements OnInit {
       (err) => console.log(err)
     );
   }
-  onEdit(users_id){
-    this.router.navigate(['/useredit/'+users_id])
+  onEdit(users_id) {
+    this.router.navigate(['/useredit/' + users_id])
   }
-  navuser(){
+  navuser() {
     this.router.navigate(['/user'])
   }
-  navevent(){
+  navevent() {
     this.router.navigate(['/eventmanage'])
   }
-  navuserv(){
+  navuserv() {
     this.router.navigate(['/userview'])
   }
-  addUser(){
+  addUser() {
     this.router.navigate(['/useradd'])
   }
-  }
+}
 

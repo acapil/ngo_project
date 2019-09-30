@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private _userService: UserServeService, private http: HttpClient, private _globals: Globals, private router: Router) { }
   private user = [];
+  
   ngOnInit() {
     this.input = {
       username: '',
@@ -42,5 +43,7 @@ export class LoginComponent implements OnInit {
       }
     );
   }
-
+  addUser() {
+    this.router.navigate(['/useradd'])
+  }
 }
