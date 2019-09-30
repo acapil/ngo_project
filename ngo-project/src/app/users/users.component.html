@@ -1,29 +1,39 @@
-
-                <table class="table table-bordered">
-                        <thead>
-                          <tr>
-                            <th>Id</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Email</th>
-                            <th>Password</th>
-                            <th>Role</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr *ngFor="let us of users let o = odd; let e = even"
-                          [ngClass] = "{oddStyle: o, evenStyle: e}">
-                          <td>{{us.id}}</td>
-                          <td>{{us.first_name|titlecase}}</td>
-                          <td>{{us.last_name|titlecase}}</td>
-                          <td>{{us.email}}</td>
-                          <td>{{us.password }}</td>
-                          <td>{{us.admin }}</td>
-                          <td><button type="button" class="btn btn-primary"  (click)="onDelete(us.id)">Delete</button>
-                            <button type="button" class="btn btn-primary" (click)="onEdit(us.id)">Edit</button></td>
-                          </tr>   
-                        </tbody>
-                        <div>
-                          <button type="button" (click)="addUser()">Add User</button>
-                      </div>
-                      </table>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Uername</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Role</th>
+    </tr>
+  </thead>
+  <tbody>
+    <div *ngIf="adminCheck; else notAdmin">
+      <tr *ngFor="let us of users let o = odd; let e = even" [ngClass]="{oddStyle: o, evenStyle: e}">
+        <td>{{us.id}}</td>
+        <td>{{us.username}}</td>
+        <td>{{us.first_name|titlecase}}</td>
+        <td>{{us.last_name|titlecase}}</td>
+        <td>{{us.email}}</td>
+        <td>{{us.admin }}</td>
+        <td><button type="button" class="btn btn-primary" (click)="onDelete(us.id)">Delete</button>
+          <button type="button" class="btn btn-primary" (click)="onEdit(us.id)">Edit</button></td>
+      </tr>
+      <button type="button" (click)="addUser()">Add User</button>
+    </div>
+    <ng-template #notAdmin>
+      <tr>
+        <td>{{users.id}}</td>
+        <td>{{users.username}}</td>
+        <td>{{users.first_name|titlecase}}</td>
+        <td>{{users.last_name|titlecase}}</td>
+        <td>{{users.email}}</td>
+        <td>{{users.admin }}</td>
+        <td><button type="button" class="btn btn-primary" (click)="onDelete(us.id)">Delete</button>
+          <button type="button" class="btn btn-primary" (click)="onEdit(us.id)">Edit</button></td>
+      </tr>
+    </ng-template>
+  </tbody>
+</table>

@@ -23,11 +23,14 @@ class TestAuthView(APIView):
 def check_permission(token):
     authenticate = False
     admin = False
-    if token in list(Token.objects.values_list('key',flat=True)):
+    user_id = 0
+    if token in list(Token.objects.values_list('key', flat=True)):
         authenticate = True
         token_object = Token.objects.get(key=token)
-        admin = getattr(User.objects.get(id=token_object.user_id), 'admin')
-    return {'authenticate': authenticate, 'admin': admin}
+        user_id = token_object.user_id
+        admin = getattr(User.objects.get(id=user_id), 'admin')
+        print(user_id)
+    return {'authenticate': authenticate, 'admin': admin, 'user_id': user_id}
 
 
 @api_view(['GET'])
@@ -36,9 +39,13 @@ def get_users(request):
         # print(request.META) # testing only
         token = request.META.get('HTTP_AUTHORIZATION').split()[1]
         permission = check_permission(token)
-        if permission.get('authenticate') and permission.get('admin'):
+        if permission.get('admin'):
             users = User.objects.all()
             serializer = UserSerializer(users, many=True)
+            return Response(serializer.data)
+        elif permission.get('authenticate'):
+            user = User.objects.get(id=permission.get('user_id'))
+            serializer = UserSerializer(user)
             return Response(serializer.data)
         else: Response(status=status.HTTP_401_UNAUTHORIZED)
     else:
