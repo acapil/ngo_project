@@ -1,16 +1,16 @@
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Uername</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Email</th>
-      <th>Role</th>
-    </tr>
-  </thead>
-  <tbody>
-    <div *ngIf="adminCheck; else notAdmin">
+<div *ngIf="adminCheck; else notAdmin">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Uername</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Role</th>
+      </tr>
+    </thead>
+    <tbody>
       <tr *ngFor="let us of users let o = odd; let e = even" [ngClass]="{oddStyle: o, evenStyle: e}">
         <td>{{us.id}}</td>
         <td>{{us.username}}</td>
@@ -22,8 +22,22 @@
           <button type="button" class="btn btn-primary" (click)="onEdit(us.id)">Edit</button></td>
       </tr>
       <button type="button" (click)="addUser()">Add User</button>
-    </div>
-    <ng-template #notAdmin>
+    </tbody>
+  </table>
+</div>
+<ng-template #notAdmin>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Uername</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Role</th>
+      </tr>
+    </thead>
+    <tbody>
       <tr>
         <td>{{users.id}}</td>
         <td>{{users.username}}</td>
@@ -34,6 +48,6 @@
         <td><button type="button" class="btn btn-primary" (click)="onDelete(users.id)">Delete</button>
           <button type="button" class="btn btn-primary" (click)="onEdit(users.id)">Edit</button></td>
       </tr>
-    </ng-template>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+</ng-template>
