@@ -11,6 +11,7 @@ import { EventnewComponent } from '../eventnew/eventnew.component';
 import { EventlistComponent } from '../eventlist/eventlist.component';
 import { UsereditComponent } from '../useredit/useredit.component';
 import { EventeditComponent } from '../eventedit/eventedit.component';
+import { ErrorPageComponent } from '../error-page/error-page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'eventlist', component: EventlistComponent },
   { path: 'useredit/:id', component: UsereditComponent },
   { path: 'eventedit/:id', component: EventeditComponent },
+  { path: 'error/:code', component: ErrorPageComponent },
   
 ];
 

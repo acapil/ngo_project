@@ -27,19 +27,19 @@ export class LoginComponent implements OnInit {
   onLogin() {
     this._userService.onLogin(this.input).subscribe(
       data => {
-        this._globals.key = data.key;
-        this.http.get<any>('http://127.0.0.1:8000/user/get_id/' + this._globals.key + '/').subscribe(
+        localStorage.setItem('token', data.key)
+        this.http.get<any>('http://127.0.0.1:8000/user/get_id/' + localStorage['token'] + '/').subscribe(
           (res) => {
-            this._globals.usid = res['user_id']
-            this._globals.admin = res['admin']
+            localStorage.setItem('admin', data.key)
+            localStorage.setItem('user_id', res['user_id'])
             if (res['admin'] == true) { this.router.navigate(['/user']) }
             else { this.router.navigate(['/eventlist']) }
           },
-          (err) => console.log(err)
+          (err) => console.log('Cannot get user info with provided token onLogin-login.component.ts',err)
         );
       },
       error => {
-        console.log('error', error);
+        console.log('Cannot login with provided credentials onLogin-login.component.ts', error);
       }
     );
   }

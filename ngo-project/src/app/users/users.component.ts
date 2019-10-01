@@ -20,10 +20,12 @@ export class UsersComponent implements OnInit {
     this._userService.getUsers().subscribe(
       (data) => {
         this.users = data, 
-        this.adminCheck = this._globals.admin
+        this.adminCheck = localStorage['admin']
       },
-      (err) => {console.log(err),
-                console.log('err',this._globals.key)}
+      (err) => {
+        console.log(err['status']),
+        this.router.navigate(['/error/' + err['status']])
+      }
     );
     this.uploadForm = this.fb.group({
       username: [''],
@@ -32,15 +34,19 @@ export class UsersComponent implements OnInit {
       email: ['']
     });
   }
+  onLogout(){
+    this._userService.onLogout().subscribe(
+      () => this.router.navigate(['/login'])
+    )
+  }
   onDelete(users_id) {
-    this.http.delete('http://127.0.0.1:8000/user/delete/' + users_id).subscribe(
+    this._userService.onDelete(users_id).subscribe(
       (res) => {
-        console.log(res);
-        location.reload()
+        console.log(res)
+        this.navuser()
       },
-      (err) => alert(err)
+      (err) => console.log(err)
     );
-    return 'success'
   }
   onInsert(formData) {
     this.http.post<any>('http://127.0.0.1:8000/user/create/', formData).subscribe(

@@ -30,7 +30,8 @@ import { UsersAddComponent } from './useradd/useradd.component';
 import { EventnewComponent } from './eventnew/eventnew.component';
 import { EventlistComponent } from './eventlist/eventlist.component';
 import { UsereditComponent } from './useredit/useredit.component';
-import { EventeditComponent } from './eventedit/eventedit.component'; 
+import { EventeditComponent } from './eventedit/eventedit.component';
+import { ErrorPageComponent } from './error-page/error-page.component'; 
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { EventeditComponent } from './eventedit/eventedit.component';
     EventnewComponent,
     EventlistComponent,
     UsereditComponent,
-    EventeditComponent
+    EventeditComponent,
+    ErrorPageComponent
   ],
   imports: [
     BrowserModule,

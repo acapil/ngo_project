@@ -137,12 +137,17 @@ def change(request, user_id):
 
 @api_view(['DELETE'])
 def delete(request, user_id):
-    try:
-        user = User.objects.get(id=user_id)
-    except User.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
     if request.method == 'DELETE':
-        user.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        token=request.META.get('HTTP_AUTHORIZATION').split()[1]
+        permission=check_permission(token)
+        if permission.get('authenticate') and permission.get('admin'):
+            try:
+                user = User.objects.get(id=user_id)
+            except User.DoesNotExist:
+                return Response(status=status.HTTP_404_NOT_FOUND)
+            user.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        else:
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
     else:
         return Response(status=status.HTTP_400_BAD_REQUEST)
