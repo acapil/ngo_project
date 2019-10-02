@@ -23,7 +23,7 @@ export class LoginCheckService {
         console.log(err)
       }
     )
-    this._isAdmin.next(localStorage['admin']=='true')
+    this._isAdmin.next(localStorage['admin']==true)
   }
   changeToLogout() {
         this._isLoggedIn.next(false) 

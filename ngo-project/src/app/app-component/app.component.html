@@ -2,9 +2,9 @@
     <!-- MAT DRAWER NEEDS TO BE HIDDEN BASED ON ADMIN -->
     <mat-drawer #drawer class="sidenav">
         <button color="primary" mat-button routerLink="/user">Users </button>
-        <button color="primary" mat-button routerLink="/eventmanage" *ngIf="loginCheck.isAdmin | async">Manage Event</button>
-        <button color="primary" mat-button routerLink="/userview" *ngIf="loginCheck.isAdmin | async">Users View</button>
-        <button color="primary" mat-button routerLink="/eventlist" *ngIf="!(loginCheck.isAdmin | async) ">View Events</button>
+        <button color="primary" mat-button routerLink="/eventmanage" [ngIf]="loginCheck.isAdmin">Manage Event</button>
+        <button color="primary" mat-button routerLink="/userview" [ngIf]="loginCheck.isAdmin | async">Users View</button>
+        <button color="primary" mat-button routerLink="/eventlist" [ngIf]="!(loginCheck.isAdmin | async) ">View Events</button>
     </mat-drawer>
     <div class="sidenav-content">
         <mat-toolbar color="primary">
