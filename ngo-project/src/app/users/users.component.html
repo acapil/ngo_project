@@ -2,7 +2,7 @@
   {{ message }}
 </div>
 <div *ngIf="adminCheck; else notAdmin">
-  <table class="table table-bordered">
+  <table class="table table-bordered" border="1">
     <thead>
       <tr>
         <th>Id</th>
@@ -31,7 +31,7 @@
   </table>
 </div>
 <ng-template #notAdmin>
-  <table class="table table-bordered">
+  <table class="table table-bordered" border="1">
     <thead>
       <tr>
         <th>Uername</th>
@@ -54,4 +54,4 @@
     </tbody>
   </table>
 </ng-template>
-<button type="button" class="btn btn-primary" (click)="onLogout()">Log Out</button>
+<!-- <button type="button" class="btn btn-primary" (click)="onLogout()">Log Out</button> -->

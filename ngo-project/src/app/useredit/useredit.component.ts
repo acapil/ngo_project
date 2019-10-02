@@ -4,6 +4,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AppComponent } from '../app-component/app.component';
+import { LoginCheckService } from '../login-check.service';
 
 
 @Component({
@@ -16,7 +17,7 @@ export class UsereditComponent implements OnInit {
   public uploadForm: FormGroup;
   private user_id = parseInt(this.route.snapshot.paramMap.get('user_id'));
   constructor(
-    private _appComponent: AppComponent,
+    private loginCheck: LoginCheckService,
     private _userService: UserServeService,
     private router: Router,
     private fb: FormBuilder,
@@ -24,16 +25,7 @@ export class UsereditComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this._userService.getUserIdFromToken().subscribe(
-      () => { this._appComponent.loggedin = true },
-      (err) => {
-        this._appComponent.loggedin = false
-        console.log('Failed on ngOnInit-useredit.component.ts')
-        console.log('Cannot verify token')
-        console.log(err)
-        this.router.navigate(['/login'])
-      }
-    )
+    this.loginCheck.getLogin()
 
     this._userService.getUser(this.user_id).subscribe(
       (data) => {

@@ -1,20 +1,21 @@
 <mat-drawer-container class="mycontainer" autosize>
     <!-- MAT DRAWER NEEDS TO BE HIDDEN BASED ON ADMIN -->
-
     <mat-drawer #drawer class="sidenav">
         <button color="primary" mat-button routerLink="/user">Users </button>
-        <button color="primary" mat-button routerLink="/eventmanage" *ngIf="adminCheck | async">Manage Event </button>
-        <button color="primary" mat-button routerLink="/userview">View Events</button>
+        <button color="primary" mat-button routerLink="/eventmanage" *ngIf="loginCheck.isAdmin | async">Manage Event</button>
+        <button color="primary" mat-button routerLink="/userview" *ngIf="loginCheck.isAdmin | async">Users View</button>
+        <button color="primary" mat-button routerLink="/eventlist" *ngIf="!(loginCheck.isAdmin | async) ">View Events</button>
     </mat-drawer>
     <div class="sidenav-content">
         <mat-toolbar color="primary">
             <mat-toolbar-row>
-                <button mat-icon-button (click)="drawer.toggle()">
+                <button mat-icon-button (click)="drawer.toggle()" *ngIf="loginCheck.isLoggedIn | async">
                     <mat-icon>menu</mat-icon>
                 </button>
                 <span> NGO Project </span>
                 <span class="spacer"></span>
-                <button type="button" class="btn btn-primary" (click)="onLogout()" *ngIf="loggedin">Log Out</button>
+                <button type="button" class="btn btn-primary" (click)="onLogout()"
+                    *ngIf="loginCheck.isLoggedIn | async">Log Out</button>
                 <mat-icon>favorite</mat-icon>
             </mat-toolbar-row>
         </mat-toolbar>

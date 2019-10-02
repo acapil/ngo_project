@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { UserServeService } from '../user-serve.service';
 import { Router } from '@angular/router';
+import { LoginCheckService } from '../login-check.service';
+
 
 @Component({
   selector: 'app-root',
@@ -9,35 +11,27 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'ngo-project';
-  adminCheck: boolean = (localStorage['admin'] == 'true');
-  public loggedin: boolean = false;
 
   constructor(
+    private loginCheck: LoginCheckService,
     private _userService: UserServeService,
     private router: Router
   ) { }
 
   ngOnInit() {
-    this._userService.getUserIdFromToken().subscribe(
-      () => { this.loggedin = true },
-      (err) => {
-        this.loggedin = false
-        console.log('Failed on ngOnInit-app.component.ts')
-        console.log('Cannot verify token')
-        console.log(err)
-        this.router.navigate(['/login'])
-      }
-    )
+     this.loginCheck.getLogin()
+     this.loginCheck.isLoggedIn
   }
 
   onLogout() {
     this._userService.onLogout().subscribe(
       () => {
+        this.loginCheck.changeToLogout()
         this.router.navigate(['/login'])
       },
       (err) => {
         console.log('Error onLogout-users.component.ts', err)
-        this.loggedin = false
+        this.loginCheck.changeToLogout()
         this.router.navigate(['/login'])
       }
     )

@@ -4,6 +4,7 @@ import { Globals } from '../globals'
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { AppComponent } from '../app-component/app.component'
+import { LoginCheckService } from '../login-check.service';
 
 
 @Component({
@@ -15,16 +16,20 @@ export class LoginComponent implements OnInit {
   input;
   
   constructor(
+    private loginCheck: LoginCheckService,
     private _userService: UserServeService, 
-    private _appComponent: AppComponent,
     private router: Router
   ) { }
 
   private user = [];
   
   ngOnInit() {
-    this._appComponent.loggedin = false
-    
+    this._userService.getUserIdFromToken().subscribe(
+      (res) => {
+        if(res['admin']=='true'){this.router.navigate(['/user'])}
+        else{this.router.navigate(['/eventlist'])}
+      }
+    )
     this.input = {
       username: '',
       password: ''

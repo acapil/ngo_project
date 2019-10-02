@@ -11,7 +11,6 @@ import { Globals } from './globals'
 export class UserServeService {
   private _url: string = "http://127.0.0.1:8000/user/";
   
-  
   constructor(private http: HttpClient, private router: Router, private _globals: Globals) { 
   }
 

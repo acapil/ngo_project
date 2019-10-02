@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { EventServeService } from '../event-serve.service';
 import { UserServeService } from '../user-serve.service';
 import { AppComponent } from '../app-component/app.component';
+import { LoginCheckService } from '../login-check.service';
 
 @Component({
   selector: 'app-events',
@@ -15,8 +16,7 @@ export class EventsComponent implements OnInit {
   public uploadForm: FormGroup;
 
   constructor(
-    private _appComponent: AppComponent,
-    private _userService: UserServeService,
+    private loginCheck: LoginCheckService,
     private _eventService: EventServeService,
     private route: ActivatedRoute,
     private router: Router,
@@ -26,16 +26,7 @@ export class EventsComponent implements OnInit {
   private message = this.route.snapshot.paramMap.get('message');
 
   ngOnInit() {
-    this._userService.getUserIdFromToken().subscribe(
-      () => { this._appComponent.loggedin = true },
-      (err) => {
-        this._appComponent.loggedin = false
-        console.log('Failed on ngOnInit-events.component.ts')
-        console.log('Cannot verify token')
-        console.log(err)
-        this.router.navigate(['/login'])
-      }
-    )
+    this.loginCheck.getLogin()
 
     if (localStorage['admin'] == 'true') {
       this._eventService.getEvents().subscribe(

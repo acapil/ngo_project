@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { EventServeService } from '../event-serve.service';
 import { AppComponent } from '../app-component/app.component';
+import { LoginCheckService } from '../login-check.service';
 
 @Component({
   selector: 'app-eventedit',
@@ -18,7 +19,7 @@ export class EventeditComponent implements OnInit {
   public newImageForm: FormGroup;
   localImage: any[];
   constructor(
-    private _appComponent: AppComponent,
+    private loginCheck: LoginCheckService,
     private _userService: UserServeService,
     private _eventService: EventServeService, 
     private route: ActivatedRoute,
@@ -29,16 +30,25 @@ export class EventeditComponent implements OnInit {
   private event_id = this.route.snapshot.paramMap.get('event_id');
 
   ngOnInit() {
+    this.loginCheck.getLogin()
+
     this._userService.getUserIdFromToken().subscribe(
-      () => { this._appComponent.loggedin = true },
+      (res) => {
+        if(res['admin'] != 'true'){
+          console.log('Failing on ngOnInit-eventedit.component.ts')
+          console.log('Token doesnot belong to admin')
+          this.router.navigate(['/error/' + 401])
+        }
+      },
       (err) => {
-        this._appComponent.loggedin = false
-        console.log('Failed on ngOnInit-eventedit.component.ts')
+        console.log('Failing on ngOnInit-userview.component.ts')
         console.log('Cannot verify token')
+        console.log(err['status'])
         console.log(err)
-        this.router.navigate(['/login'])
+        this.router.navigate(['/error/' + err['status']])
       }
     )
+
     this._eventService.getEvent(this.event_id).subscribe(
       (data) => {
         this.event = data

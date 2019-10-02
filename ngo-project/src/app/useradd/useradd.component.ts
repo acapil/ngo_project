@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Globals } from '../globals'
 import { AppComponent } from '../app-component/app.component';
+import { LoginCheckService } from '../login-check.service';
 
 
 @Component({
@@ -17,6 +18,7 @@ export class UsersAddComponent implements OnInit {
   public users = [];
   public uploadForm: FormGroup;
   constructor(
+    private loginCheck: LoginCheckService,
     private _appComponent: AppComponent,
     private _userService: UserServeService, 
     private router: Router, 
@@ -24,16 +26,25 @@ export class UsersAddComponent implements OnInit {
     private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.loginCheck.getLogin()
+
     this._userService.getUserIdFromToken().subscribe(
-      () => { this._appComponent.loggedin = true },
+      (res) => {
+        if(!res['admin']){
+          console.log('Failing on ngOnInit-useradd.component.ts')
+          console.log('Token doesnot belong to admin')
+          this.router.navigate(['/error/' + 401])
+        }
+      },
       (err) => {
-        this._appComponent.loggedin = false
-        console.log('Failed on ngOnInit-useradd.component.ts')
+        console.log('Failing on ngOnInit-userview.component.ts')
         console.log('Cannot verify token')
+        console.log(err['status'])
         console.log(err)
-        this.router.navigate(['/login'])
+        this.router.navigate(['/error/' + err['status']])
       }
     )
+
     this._userService.getUsers().subscribe(
       (data) => this.users = data,
       (err) => {

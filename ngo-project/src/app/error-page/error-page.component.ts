@@ -19,6 +19,7 @@ export class ErrorPageComponent implements OnInit {
   }
   ngOnInit() {
     this.message = this.error_message[this.code.toString()]
+    localStorage.clear()
   }
   navLogin() {
     this.router.navigate(['/login'])

@@ -12,7 +12,7 @@
 </style>
 <div class="container-fluid">
     <div class="col-md-10">
-      <table class="table table-bordered">
+      <table class="table table-bordered" border="1">
         <tbody>
           <tr *ngFor="let ev of events let o = odd; let e = even" [ngClass]="{oddStyle: o, evenStyle: e}">
             <td><button> <img src="http://127.0.0.1:8000{{ev.image}}"> </button></td>

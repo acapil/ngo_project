@@ -27,6 +27,7 @@ const routes: Routes = [
   { path: 'useredit/:user_id', component: UsereditComponent },
   { path: 'eventedit/:event_id', component: EventeditComponent },
   { path: 'error/:code', component: ErrorPageComponent },
+  {path: '**', redirectTo: 'error/404'}
 ];
 
 @NgModule({

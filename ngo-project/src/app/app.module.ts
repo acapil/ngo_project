@@ -32,6 +32,7 @@ import { EventlistComponent } from './eventlist/eventlist.component';
 import { UsereditComponent } from './useredit/useredit.component';
 import { EventeditComponent } from './eventedit/eventedit.component';
 import { ErrorPageComponent } from './error-page/error-page.component'; 
+import { LoginCheckService } from './login-check.service';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,7 @@ import { ErrorPageComponent } from './error-page/error-page.component';
     MatToolbarModule,
     MatCardModule
   ],
-  providers: [UserServeService, EventServeService, EventRegistrationServeService,Globals],
+  providers: [UserServeService, EventServeService, EventRegistrationServeService,Globals,LoginCheckService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

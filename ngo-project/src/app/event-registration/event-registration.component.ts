@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserServeService } from '../user-serve.service';
 import { AppComponent } from '../app-component/app.component';
+import { LoginCheckService } from '../login-check.service';
 @Component({
   selector: 'app-event-registration',
   templateUrl: './event-registration.component.html',
@@ -13,7 +14,7 @@ import { AppComponent } from '../app-component/app.component';
 export class EventRegistrationComponent implements OnInit {
 
   constructor(
-    private _appComponent: AppComponent,
+    private loginCheck: LoginCheckService,
     private _userService: UserServeService,
     private _registrationService: EventRegistrationServeService, 
     private router: Router, 
@@ -24,16 +25,25 @@ export class EventRegistrationComponent implements OnInit {
   public uploadForm: FormGroup;
   private event_id = parseInt(this.route.snapshot.paramMap.get('event_id'));
   ngOnInit() {
+    this.loginCheck.getLogin()
+
     this._userService.getUserIdFromToken().subscribe(
-      () => { this._appComponent.loggedin = true },
+      (res) => {
+        if(res['admin']){
+          console.log('Failing on ngOnInit-eventregistration.component.ts')
+          console.log('Token doesnot belong to regular user')
+          this.router.navigate(['/error/' + 401])
+        }
+      },
       (err) => {
-        this._appComponent.loggedin = false
-        console.log('Failed on ngOnInit-event-registration.component.ts')
+        console.log('Failing on ngOnInit-userview.component.ts')
         console.log('Cannot verify token')
+        console.log(err['status'])
         console.log(err)
-        this.router.navigate(['/login'])
+        this.router.navigate(['/error/' + err['status']])
       }
     )
+
     this.uploadForm = this.fb.group({
       user: [''],
       event: [''],

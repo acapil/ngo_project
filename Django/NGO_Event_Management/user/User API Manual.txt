@@ -93,7 +93,7 @@ GET http://127.0.0.1:8000/user/get_id/$token/
 Header:
 {"Authorization": "Token 66dcef6aecc562092d4678719647813b05e5c88e"}
 
-Return: user_id and token corresponded to provided token
+Return: user_id and admin corresponded to provided token
 
 
 # Get token from user_id
