@@ -27,7 +27,7 @@ from rest_framework.authtoken.views import obtain_auth_token
 urlpatterns = [
     url(r'^$', views.get_users, name='get_user_list'),
     url(r'^(?P<user_id>[0-9]+)$', views.get_user, name='get_user'),
-    path('get_id/<str:token>/', views.get_id_from_token, name='get_id_from_token'),
+    path('get_id/', views.get_id_from_token, name='get_id_from_token'),
     path('get_token/<int:user_id>/', views.get_token_from_id, name='get_token_from_id'),
     # url(r'^insert/$', views.insert, name='insert'),
     # url(r'^update/(?P<user_id>[0-9]+)$', views.update, name='update'), # does not work

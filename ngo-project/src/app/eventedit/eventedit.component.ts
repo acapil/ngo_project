@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UserServeService } from '../user-serve.service';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { EventServeService } from '../event-serve.service';
+import { AppComponent } from '../app-component/app.component';
 
 @Component({
   selector: 'app-eventedit',
@@ -16,13 +17,31 @@ export class EventeditComponent implements OnInit {
   public imageForm: FormGroup;
   public newImageForm: FormGroup;
   localImage: any[];
-  constructor(private route: ActivatedRoute, private _userService: UserServeService, private router: Router, private http: HttpClient, private fb: FormBuilder) { }
-  id = parseInt(this.route.snapshot.paramMap.get('id'));
+  constructor(
+    private _appComponent: AppComponent,
+    private _userService: UserServeService,
+    private _eventService: EventServeService, 
+    private route: ActivatedRoute,
+    private router: Router, 
+    private fb: FormBuilder
+  ) { }
+  
+  private event_id = this.route.snapshot.paramMap.get('event_id');
 
   ngOnInit() {
-    this.http.get<any>('http://127.0.0.1:8000/event/' + this.id).subscribe(
+    this._userService.getUserIdFromToken().subscribe(
+      () => { this._appComponent.loggedin = true },
+      (err) => {
+        this._appComponent.loggedin = false
+        console.log('Failed on ngOnInit-eventedit.component.ts')
+        console.log('Cannot verify token')
+        console.log(err)
+        this.router.navigate(['/login'])
+      }
+    )
+    this._eventService.getEvent(this.event_id).subscribe(
       (data) => {
-        this.event = data,
+        this.event = data
         this.uploadForm = this.fb.group({
           event_name: [this.event['event_name']],
           category: [this.event['category']],
@@ -35,35 +54,33 @@ export class EventeditComponent implements OnInit {
           image: [this.event['image']],
         })
       },
-      (error) => console.log(error)
+      (error) => {
+        console.log('Failing on ngOnInit-eventedit.component.ts',error)
+      }
     );
 
     this.newImageForm = this.fb.group({
       newimage: [],
 
-    }),
-      this._userService.getUsers().subscribe(
-        (data) => this.events = data,
-        () => console.log('the sequence completed!')
-      );
+    });
   }
-  onInsert1(formData) {
-    const formData1 = new FormData();
-    if(this.newImageForm.get('newimage').value){
-      formData1.append('image', this.newImageForm.get('newimage').value);
+  editEvent(formData) {
+    const editForm = new FormData();
+    if (this.newImageForm.get('newimage').value) {
+      editForm.append('image', this.newImageForm.get('newimage').value);
     }
-    formData1.append('user', this.event['user']);
-    formData1.append('event_name', formData.event_name);
-    formData1.append('category', formData.category);
-    formData1.append('location', formData.location);
-    formData1.append('start_time', formData.start_time);
-    formData1.append('end_time', formData.end_time);
-    formData1.append('description', formData.description);
-    formData1.append('adult_price', formData.adult_price);
-    formData1.append('kid_price', formData.kid_price);
-    this.http.patch<any>('http://127.0.0.1:8000/event/edit/' + this.id, formData1).subscribe(
+    editForm.append('user', this.event['user']);
+    editForm.append('event_name', formData.event_name);
+    editForm.append('category', formData.category);
+    editForm.append('location', formData.location);
+    editForm.append('start_time', formData.start_time);
+    editForm.append('end_time', formData.end_time);
+    editForm.append('description', formData.description);
+    editForm.append('adult_price', formData.adult_price);
+    editForm.append('kid_price', formData.kid_price);
+    this._eventService.editEvent(editForm, this.event_id).subscribe(
       (res) => {
-        this.router.navigate(['/eventmanage'])
+        this.router.navigate(['/eventmanage', {message:'Changed Event Successfully'}])
       },
       (err) => console.log(err)
     );

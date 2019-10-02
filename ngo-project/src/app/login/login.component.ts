@@ -3,8 +3,7 @@ import { UserServeService } from '../user-serve.service';
 import { Globals } from '../globals'
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-
-
+import { AppComponent } from '../app-component/app.component'
 
 
 @Component({
@@ -14,11 +13,18 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LoginComponent implements OnInit {
   input;
+  
+  constructor(
+    private _userService: UserServeService, 
+    private _appComponent: AppComponent,
+    private router: Router
+  ) { }
 
-  constructor(private _userService: UserServeService, private http: HttpClient, private _globals: Globals, private router: Router) { }
   private user = [];
   
   ngOnInit() {
+    this._appComponent.loggedin = false
+    
     this.input = {
       username: '',
       password: ''
@@ -28,10 +34,11 @@ export class LoginComponent implements OnInit {
     this._userService.onLogin(this.input).subscribe(
       data => {
         localStorage.setItem('token', data.key)
-        this.http.get<any>('http://127.0.0.1:8000/user/get_id/' + localStorage['token'] + '/').subscribe(
+        this._userService.getUserIdFromToken().subscribe(
           (res) => {
-            localStorage.setItem('admin', data.key)
+            localStorage.setItem('admin', res['admin'])
             localStorage.setItem('user_id', res['user_id'])
+            console.log(localStorage)
             if (res['admin'] == true) { this.router.navigate(['/user']) }
             else { this.router.navigate(['/eventlist']) }
           },

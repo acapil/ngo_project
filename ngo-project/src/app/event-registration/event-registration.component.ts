@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { UserServeService } from '../user-serve.service';
+import { EventRegistrationServeService } from '../event-registration-serve.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import {Globals} from '../globals'
+import { UserServeService } from '../user-serve.service';
+import { AppComponent } from '../app-component/app.component';
 @Component({
   selector: 'app-event-registration',
   templateUrl: './event-registration.component.html',
@@ -11,21 +12,31 @@ import {Globals} from '../globals'
 })
 export class EventRegistrationComponent implements OnInit {
 
-  constructor(private _userService: UserServeService, private router: Router, private http: HttpClient,private fb: FormBuilder,private _globals: Globals, private route: ActivatedRoute) { }
-  private usid = 0;
+  constructor(
+    private _appComponent: AppComponent,
+    private _userService: UserServeService,
+    private _registrationService: EventRegistrationServeService, 
+    private router: Router, 
+    private fb: FormBuilder, 
+    private route: ActivatedRoute
+  ) {}
+  
   public uploadForm: FormGroup;
-  id = parseInt(this.route.snapshot.paramMap.get('id'));
+  private event_id = parseInt(this.route.snapshot.paramMap.get('event_id'));
   ngOnInit() {
-    this.http.get<any>('http://127.0.0.1:8000/user/get_id/'+this._globals.key+'/').subscribe(
-           (data) => { this.usid=data.user_id;
-                        console.log('xxxxxx',this.usid)
-                    },
-          (err) => console.log(err)
-        );
-    console.log('zzzzz',this.usid)
+    this._userService.getUserIdFromToken().subscribe(
+      () => { this._appComponent.loggedin = true },
+      (err) => {
+        this._appComponent.loggedin = false
+        console.log('Failed on ngOnInit-event-registration.component.ts')
+        console.log('Cannot verify token')
+        console.log(err)
+        this.router.navigate(['/login'])
+      }
+    )
     this.uploadForm = this.fb.group({
-      user:  [''],// [this._globals.usid],
-      event: [''],// [this.id],
+      user: [''],
+      event: [''],
       first_name: [''],
       last_name: [''],
       email: [''],
@@ -35,18 +46,17 @@ export class EventRegistrationComponent implements OnInit {
       quantity_kid: [''],
     });
   }
-  onInsert1(formData) {
-    console.log('yyyy',formData)
-    formData.user = this.usid
-    formData.event = this.id
-    console.log('aaaa',this.usid)
-    this.http.post<any>('http://127.0.0.1:8000/event_registration/new/', formData).subscribe(
-      (res) => {console.log(res['total_price'])
-                this.router.navigate(['/eventlist'])
+  regEvent(formData) {
+    formData.user = localStorage['user_id']
+    formData.event = this.event_id
+    this._registrationService.regEvent(formData).subscribe(
+      (res) => {
+        console.log(res['total_price'])
+        this.router.navigate(['/eventlist', {message: 'Register for event successfully, total price is $' + res['total_price']}])
       },
       (err) => console.log(err)
     );
   }
-  
+
 
 }

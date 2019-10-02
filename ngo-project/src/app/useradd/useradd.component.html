@@ -16,36 +16,8 @@
     }
 </style>
 <div class="container-fluid">
-    <!-- <div class="row">
-        <div class="col-md-2">
-            NGO
-        </div>
-        <div class="col-md-9">
-        </div>
-        <div class="col-md-1">
-            Admin
-        </div>
-    </div> -->
-    <!-- <div class="row"> -->
-        <!-- <div class="col-md-2">
-            <div>
-                <button type="button" class="btn btn-outline-primary" (click)="navuser()">
-                    User Management
-                </button>
-            </div>
-            <div>
-                <button type="button" class="btn btn-outline-primary" (click)="navevent()">
-                    Event Management
-                </button>
-            </div>
-            <div>
-                <button type="button" class="btn btn-outline-primary" (click)="navuserv()">
-                    User View
-                </button>
-            </div>
-        </div> -->
         <div class="col-md-10">
-            <form [formGroup]="uploadForm" (ngSubmit)="onInsert1(uploadForm.value)">
+            <form [formGroup]="uploadForm" (ngSubmit)="addNewUser(uploadForm.value)">
                 <input name="username" formControlName="username" placeholder='User'>
                 <input type="password" name="password1" formControlName="password1" placeholder='Password'>
                 <input type="password" name="password2" formControlName="password2" placeholder='Repeat Password'>
@@ -53,5 +25,4 @@
                 <button type="submit">Save</button>
             </form>
         </div>
-    
 </div>

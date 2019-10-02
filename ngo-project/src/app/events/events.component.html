@@ -1,16 +1,4 @@
-<!-- 	<button type="button" class="btn btn-outline-primary" (click)="navuser()">
-			User Management
-            </button> 
-            </div>
-            <div>
-            <button type="button" class="btn btn-outline-primary" (click)="navevent()">
-            Event Management
-            </button> 
-            </div>
-            <div>
-            <button type="button" class="btn btn-outline-primary" (click)="navuserv()">
-            User View
-            </button>  -->
+<div>{{ message }}</div>
 <table class="table table-bordered">
   <thead>
     <tr>
@@ -26,18 +14,18 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let ev of events let o = odd; let e = even" [ngClass]="{oddStyle: o, evenStyle: e}">
-      <td>{{ev.id}}</td>
-      <td>{{ev.user}}</td>
-      <td>{{ev.category}}</td>
-      <td>{{ev.location}}</td>
-      <td>{{ev.start_time }}</td>
-      <td>{{ev.end_time }}</td>
-      <td>{{ev.adult_price}}</td>
-      <td>{{ev.kid_price}}</td>
-      <td><img src="http://127.0.0.1:8000{{ev.image}}"></td>
-      <td><button type="button" class="btn btn-primary" (click)="onDelete(ev.id)">Delete</button>
-        <button type="button" class="btn btn-primary" (click)="onEdit(ev.id)">Edit</button></td>
+    <tr *ngFor="let event of events let o = odd; let e = even" [ngClass]="{oddStyle: o, evenStyle: e}">
+      <td>{{event.id}}</td>
+      <td>{{event.user}}</td>
+      <td>{{event.category}}</td>
+      <td>{{event.location}}</td>
+      <td>{{event.start_time }}</td>
+      <td>{{event.end_time }}</td>
+      <td>{{event.adult_price}}</td>
+      <td>{{event.kid_price}}</td>
+      <td><img src="http://127.0.0.1:8000{{event.image}}"></td>
+      <td><button type="button" class="btn btn-primary" (click)="onDelete(event.id)">Delete</button>
+        <button type="button" class="btn btn-primary" (click)="onEdit(event.id)">Edit</button></td>
     </tr>
   </tbody>
   <div>

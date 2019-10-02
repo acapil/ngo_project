@@ -18,16 +18,15 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'user', component: UsersComponent },
   { path: 'eventmanage', component: EventsComponent },
-  { path: 'eventdetail/:id', component: EventdetailComponent },
+  { path: 'eventdetail/:event_id', component: EventdetailComponent },
   { path: 'userview', component: UserviewComponent },
-  { path: 'eventreg/:id', component: EventRegistrationComponent },
+  { path: 'eventreg/:event_id', component: EventRegistrationComponent },
   { path: 'useradd', component: UsersAddComponent },
   { path: 'eventadd', component: EventnewComponent },
   { path: 'eventlist', component: EventlistComponent },
-  { path: 'useredit/:id', component: UsereditComponent },
-  { path: 'eventedit/:id', component: EventeditComponent },
+  { path: 'useredit/:user_id', component: UsereditComponent },
+  { path: 'eventedit/:event_id', component: EventeditComponent },
   { path: 'error/:code', component: ErrorPageComponent },
-  
 ];
 
 @NgModule({

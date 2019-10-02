@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ErrorPageComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private router: Router) { }
   code = parseInt(this.route.snapshot.paramMap.get('code'));
   private message
   private error_message = {
@@ -20,5 +20,7 @@ export class ErrorPageComponent implements OnInit {
   ngOnInit() {
     this.message = this.error_message[this.code.toString()]
   }
-
+  navLogin() {
+    this.router.navigate(['/login'])
+  }
 }

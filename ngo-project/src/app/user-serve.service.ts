@@ -10,7 +10,10 @@ import { Globals } from './globals'
 })
 export class UserServeService {
   private _url: string = "http://127.0.0.1:8000/user/";
-  constructor(private http: HttpClient, private router: Router, private _globals: Globals) { }
+  
+  
+  constructor(private http: HttpClient, private router: Router, private _globals: Globals) { 
+  }
 
   getUsers(): Observable<Users[]> {
     var header = new HttpHeaders().set('Authorization', 'Token ' + localStorage['token'])
@@ -19,6 +22,10 @@ export class UserServeService {
   getUser(user_id): Observable<Users[]> {
     var header = new HttpHeaders().set('Authorization', 'Token ' + localStorage['token'])
     return this.http.get<Users[]>(this._url + user_id, { headers: header });
+  }
+  getUserIdFromToken(): Observable<Users[]> {
+    var header = new HttpHeaders().set('Authorization', 'Token ' + localStorage['token'])
+    return this.http.get<any>('http://127.0.0.1:8000/user/get_id/', { headers: header })
   }
   onLogin(userData): Observable<any> {
     localStorage.clear()
@@ -29,10 +36,13 @@ export class UserServeService {
     localStorage.clear()
     return this.http.post("http://127.0.0.1:8000/user/auth/logout/", null, { headers: header });
   }
+  onEdit(formData, user_id){
+    var header = new HttpHeaders().set('Authorization', 'Token ' + localStorage['token'])
+    return this.http.patch<any>('http://127.0.0.1:8000/user/change/' + user_id, formData, {headers: header})
+  }
   onDelete(user_id) {
     var header = new HttpHeaders().set('Authorization', 'Token ' + localStorage['token'])
-    return this.http.delete('http://127.0.0.1:8000/user/delete/' + user_id)
-    
+    return this.http.delete('http://127.0.0.1:8000/user/delete/' + user_id, {headers: header}) 
   }
   errorHandler(error: HttpErrorResponse) {
     return throwError(error.message || "Server Error");

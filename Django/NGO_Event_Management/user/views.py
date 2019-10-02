@@ -29,14 +29,12 @@ def check_permission(token):
         token_object = Token.objects.get(key=token)
         user_id = token_object.user_id
         admin = getattr(User.objects.get(id=user_id), 'admin')
-        print(user_id)
     return {'authenticate': authenticate, 'admin': admin, 'user_id': user_id}
 
 
 @api_view(['GET'])
 def get_users(request):
     if request.method == 'GET':
-        # print(request.META) # testing only
         token = request.META.get('HTTP_AUTHORIZATION').split()[1]
         permission = check_permission(token)
         if permission.get('admin'):
@@ -57,9 +55,10 @@ def get_user(request, user_id):
     if request.method == 'GET':
         token = request.META.get('HTTP_AUTHORIZATION').split()[1]
         permission = check_permission(token)
-        if permission.get('authenticate'):
+        if permission.get('authenticate') \
+                and (str(permission.get('user_id')) == user_id or permission.get('admin')):
             try:
-                user=User.objects.get(id=user_id)
+                user = User.objects.get(id=user_id)
             except User.DoesNotExist:
                 return Response(status=status.HTTP_404_NOT_FOUND)
             serializer = UserSerializer(user)
@@ -71,19 +70,20 @@ def get_user(request, user_id):
 
 
 @api_view(['GET'])
-def get_id_from_token(request, token):
-    try:
-        obj = Token.objects.get(key=token)
-    except Token.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
+def get_id_from_token(request):
     if request.method == 'GET':
+        token = request.META.get('HTTP_AUTHORIZATION').split()[1]
+        try:
+            obj = Token.objects.get(key=token)
+        except Token.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
         user_id = getattr(obj, 'user_id')
         admin = getattr(User.objects.get(id=user_id), 'admin')
         return Response({'user_id': user_id, 'admin': admin, 'token': token})
     else:
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
-
+# Don't use this on front end, this API is for debugging purpose only
 @api_view(['GET'])
 def get_token_from_id(request, user_id):
     try:
@@ -118,19 +118,25 @@ def insert(request):
 
 @api_view(['PATCH'])
 def change(request, user_id):
-    try:
-        user = User.objects.get(id=user_id)
-    except User.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
     if request.method == 'PATCH':
-        user.admin = request.data['admin']
-        user.email = request.data['email']
-        user.first_name = request.data['first_name']
-        user.last_name = request.data['last_name']
-        user.is_superuser = user.admin
-        user.is_staff = user.admin
-        user.save()
-        return Response(status=status.HTTP_200_OK)
+        token = request.META.get('HTTP_AUTHORIZATION').split()[1]
+        permission = check_permission(token)
+        if permission.get('authenticate') \
+                and (str(permission.get('user_id')) == user_id or permission.get('admin')):
+            try:
+                user = User.objects.get(id=user_id)
+            except User.DoesNotExist:
+                return Response(status=status.HTTP_404_NOT_FOUND)
+            user.admin = request.data['admin']
+            user.email = request.data['email']
+            user.first_name = request.data['first_name']
+            user.last_name = request.data['last_name']
+            user.is_superuser = user.admin
+            user.is_staff = user.admin
+            user.save()
+            return Response(status=status.HTTP_200_OK)
+        else:
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
     else:
         return Response(status=status.HTTP_400_BAD_REQUEST)
 

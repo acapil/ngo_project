@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { EventServeService } from '../event-serve.service';
-import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { EventServeService } from '../event-serve.service';
+import { UserServeService } from '../user-serve.service';
+import { AppComponent } from '../app-component/app.component';
 
 @Component({
   selector: 'app-events',
@@ -12,13 +13,48 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class EventsComponent implements OnInit {
   public events = [];
   public uploadForm: FormGroup;
-  constructor(private _eventService: EventServeService,private router:Router,private http:HttpClient,private fb: FormBuilder) { }
+
+  constructor(
+    private _appComponent: AppComponent,
+    private _userService: UserServeService,
+    private _eventService: EventServeService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private fb: FormBuilder
+  ) { }
+
+  private message = this.route.snapshot.paramMap.get('message');
 
   ngOnInit() {
-    this._eventService.getEvents().subscribe(
-      (data) => this.events = data,
-      () => console.log('the sequence completed!')
-    );
+    this._userService.getUserIdFromToken().subscribe(
+      () => { this._appComponent.loggedin = true },
+      (err) => {
+        this._appComponent.loggedin = false
+        console.log('Failed on ngOnInit-events.component.ts')
+        console.log('Cannot verify token')
+        console.log(err)
+        this.router.navigate(['/login'])
+      }
+    )
+
+    if (localStorage['admin'] == 'true') {
+      this._eventService.getEvents().subscribe(
+        (data) => this.events = data,
+        (err) => {
+          console.log('Failing on ngOnInit-events.component.ts')
+          console.log('Cannot get events')
+          console.log(err)
+          console.log(err['status'])
+          this.router.navigate(['/error/' + err['status']])
+        }
+      )
+    }
+    else {
+      console.log('Failing on ngOnInit-events.component.ts')
+      console.log('Cannot get through authorization')
+      this.router.navigate(['/error/' + 404])
+    }
+
     this.uploadForm = this.fb.group({
       user: [''],
       event_name: [''],
@@ -32,36 +68,32 @@ export class EventsComponent implements OnInit {
 
     });
   }
-  onDelete(e_id) {
-    this.http.delete('http://127.0.0.1:8000/event/delete/' + e_id).subscribe(
-      (res) =>{ console.log(res);
-                location.reload()
+  onDelete(event_id) {
+    this._eventService.deleteEvent(event_id).subscribe(
+      (res) => {
+        console.log(res);
+        location.reload()
       },
-      (err) => alert(err)
-      
-      );
-    return 'success'
-  }
-  onInsert(formData) {
-    this.http.post<any>('http://127.0.0.1:8000/event/new/', formData).subscribe(
-      (res) => console.log(res),
-      (err) => console.log(err)
+      (err) => {
+        console.log('Failing on onDelete-events.component.ts')
+        console.log(err)
+        location.reload()
+      }
     );
   }
-  onEdit(e_id){
-    this.router.navigate(['/eventedit/'+e_id])
+  onEdit(event_id) {
+    this.router.navigate(['/eventedit/' + event_id])
   }
-  navuser(){
+  navuser() {
     this.router.navigate(['/user'])
   }
-  navevent(){
+  navevent() {
     this.router.navigate(['/eventmanage'])
   }
-  navuserv(){
+  navuserv() {
     this.router.navigate(['/userview'])
   }
-  addEvent(){
+  addEvent() {
     this.router.navigate(['/eventadd'])
   }
-
 }

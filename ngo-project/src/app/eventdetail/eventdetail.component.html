@@ -1,177 +1,52 @@
-<style>
-    .evenStyle {
-      background-color: red;
-      }
-  .oddStyle {
-      background-color: green;
-  }
-  .red {
-      color: red;
-  }
-  .size {
-      font-size: 20px;
-  }
-  </style>
-  <div class="container-fluid">
-  <div class="row">
-    <div class="col-md-2">
-            NGO
-    </div>
-    <div class="col-md-9">
-    </div>
-    <div class="col-md-1">
-            User
-    </div>
-  </div>
-  <div class="row">
-      <div class="col-md-12">
-    <div> Event Registration Detail: {{event.name}} </div>
-     </div>
-  </div>
-    <div class="row">
-     <div class="col-md-4">
-            <table class="table table-bordered">
-                    <thead>
-                      <tr>
-                        <th>Event Name</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                      <td>{{event.event_name}}</td>
-                      </tr>    
-                    </tbody>
-                  </table>
-                  <table>
-                        <thead>
-                          <tr>
-                            <th>Event Category</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                          <td>{{event.category}}</td>
-                          </tr>    
-                        </tbody>
-                      </table>
-                      <table>
-                            <thead>
-                              <tr>
-                                <th>Event Location</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                              <td>{{event.location}}</td>
-                              </tr>    
-                            </tbody>
-                          </table>
-                          <table>
-                                <thead>
-                                  <tr>
-                                    <th>Event Start Time</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <tr>
-                                  <td>{{event.start_time}}</td>
-                                  </tr>    
-                                </tbody>
-                              </table>
-                              <table>
-                                    <thead>
-                                      <tr>
-                                        <th>Event End Time</th>
-                                      </tr>
-                                    </thead>
-                                    <tbody>
-                                      <tr>
-                                      <td>{{event.end_time}}</td>
-                                      </tr>    
-                                    </tbody>
-                                  </table>
-                                
-          </div>
-          <div class="col-md-4">
-                <table>
-                        <thead>
-                          <tr>
-                            <th>Event Description</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                          <td>{{event.description}}</td>
-                          </tr>    
-                        </tbody>
-                      </table>
-                      <table>
-                            <thead>
-                              <tr>
-                                <th>Adult Ticket Prices</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                              <td>{{event.adult_price}}</td>
-                              </tr>    
-                            </tbody>
-                          </table>
-                          <table>
-                                <thead>
-                                  <tr>
-                                    <th>Kid Ticket Prices</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <tr>
-                                  <td>{{event.kid_price}}</td>
-                                  </tr>    
-                                </tbody>
-                              </table>
-              </div>
-              <div class="col-md-4">
-                    <table>
-                            <thead>
-                              <tr>
-                                <th>Event Description</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                              <td>{{event.description}}</td>
-                              </tr>    
-                            </tbody>
-                          </table>
-                          <table>
-                                <thead>
-                                  <tr>
-                                    <th>Images</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <tr>
-                                  <td>{{event.adult_price}}</td>
-                                  </tr>    
-                                </tbody>
-                              </table>
-                              <table>
-                                    <thead>
-                                      <tr>
-                                        <th>Images</th>
-                                      </tr>
-                                    </thead>
-                                    <tbody>
-                                      <tr>
-                                      <td> <img src="http://127.0.0.1:8000{{event.image}}"> </td>
-                                      </tr>    
-                                    </tbody>
-                                  </table>
-                  </div>
-                        
-      </div>
-      <div class="row">
-         <button (click)="reg(event.id)">Register</button>
-      </div>
-  </div>
-  
+<div class="col-md-12">
+  <div> Event Registration Detail: <b>{{event.event_name}}</b> </div>
+</div>
+<table class="table table-bordered" border="1">
+  <thead>
+    <tr>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>Event Name</b></td>
+      <td><b>Event Category</b></td>
+      <td><b>Event Location</b></td>
+    </tr>
+    <tr>
+      <td>{{event.event_name}}</td>
+      <td>{{event.category}}</td>
+      <td>{{event.location}}</td>
+    </tr>
+    <tr>
+      <td><b>Event Start Time</b></td>
+      <td><b>Event End Time</b></td>
+      <td><b>Event Description</b></td>
+    </tr>
+    <tr>
+      <td>
+        <time [attr.datetime]="event.start_time">
+          {{ event.start_time | date: 'short'}}
+        </time>
+      </td>
+      <td>
+        <time [attr.datetime]="event.start_time">
+          {{event.end_time | date: 'short'}}
+        </time>
+      </td>
+      <td>{{event.description}}</td>
+    </tr>
+    <tr>
+      <td><b>Adult Ticket Prices</b></td>
+      <td><b>Kid Ticket Prices</b></td>
+      <td><b>Images</b></td>
+    </tr>
+    <tr>
+      <td>{{event.adult_price | currency}}</td>
+      <td>{{event.kid_price | currency }}</td>
+      <td> <img src="http://127.0.0.1:8000{{event.image}}"></td>
+    </tr>
+  </tbody>
+</table>
+<div class="row">
+  <button (click)="registerEvent(event.id)">Register</button>
+</div>

@@ -1,5 +1,5 @@
 
-<h1>Edit Event</h1>
+<h1>Add New Event</h1>
 <div class="col-md-10" *ngIf="uploadForm">
     <!-- <form [formGroup]="uploadForm" (ngSubmit)="onInsert1(uploadForm.value)" *ngIf="uploadForm">
         <label for="event_name">Event Name:</label>
@@ -33,7 +33,7 @@
         </form> -->
         
         <div class="col-md-10">
-            <form [formGroup]="uploadForm" (ngSubmit)="onInsert1(uploadForm.value)" *ngIf="uploadForm">
+            <form [formGroup]="uploadForm" (ngSubmit)="addNewEvent(uploadForm.value)" *ngIf="uploadForm">
                 <input name="event_name" formControlName="event_name" class="form-control" placeholder='Event Name'>
                 <select formControlName="category" placeholder='Category'>
                     <option value="">-- Select an option--</option>
